@@ -9,6 +9,10 @@ export const TRY_FETCH_SELECTED_SUPPLY = '[ supply ] try fetch selected supply';
 export const FETCH_SELECTED_SUPPLY_SUCCESS = '[ supply ] fetch selected supply success';
 export const FETCH_SELECTED_SUPPLY_ERROR = '[ supply ] fetch selected supply error';
 
+export const TRY_UPDATE_SUPPLY = '[ supply ] try update supply';
+export const UPDATE_SUPPLY_SUCCESS = '[ supply ] update supply success';
+export const UPDATE_SUPPLY_ERROR = '[ supply ] update supply error';
+
 
 export class TryFetchSupplies implements Action {
     readonly type = TRY_FETCH_SUPPLIES;
@@ -39,10 +43,28 @@ export class FetchSelectedSupplyError implements Action {
     constructor(public payload: any) {}
 }
 
+export class TryUpdateSupply implements Action {
+    readonly type = TRY_UPDATE_SUPPLY;
+    constructor(public payload: Supply) {}
+}
+
+export class UpdateSupplySuccess implements Action {
+    readonly type = UPDATE_SUPPLY_SUCCESS;
+    constructor(public payload: Supply) {}
+}
+
+export class UpdateSupplyError implements Action {
+    readonly type = UPDATE_SUPPLY_ERROR;
+    constructor(public payload: any) {}
+}
+
 export type SupplyActions =
     TryFetchSupplies |
     FetchSuppliesSuccess |
     FetchSuppliesError |
     TryFetchSelectedSupply |
     FetchSelectedSupplySuccess |
-    FetchSelectedSupplyError;
+    FetchSelectedSupplyError |
+    TryUpdateSupply |
+    UpdateSupplySuccess |
+    UpdateSupplyError;

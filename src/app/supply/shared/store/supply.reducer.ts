@@ -4,7 +4,9 @@ import {
     FETCH_SUPPLIES_SUCCESS,
     FETCH_SUPPLIES_ERROR,
     FETCH_SELECTED_SUPPLY_ERROR,
-    FETCH_SELECTED_SUPPLY_SUCCESS
+    FETCH_SELECTED_SUPPLY_SUCCESS,
+    UPDATE_SUPPLY_ERROR,
+    UPDATE_SUPPLY_SUCCESS
 } from './supply.actions';
 
 export interface SupplyState {
@@ -22,6 +24,7 @@ export const initialSupplyState: SupplyState = {
 export function supplyReducer(state: SupplyState = initialSupplyState, action: SupplyActions) {
     switch (action.type) {
         case FETCH_SELECTED_SUPPLY_ERROR :
+        case UPDATE_SUPPLY_ERROR :
         case FETCH_SUPPLIES_ERROR : {
             return {
                 ...state,
@@ -31,13 +34,22 @@ export function supplyReducer(state: SupplyState = initialSupplyState, action: S
         case FETCH_SUPPLIES_SUCCESS : {
             return {
                 ...state,
-                supplies: action.payload
+                supplies: action.payload,
+                error: null
             };
         }
         case FETCH_SELECTED_SUPPLY_SUCCESS : {
             return {
                 ...state,
-                supply: action.payload
+                supply: action.payload,
+                error: null
+            };
+        }
+        case UPDATE_SUPPLY_SUCCESS : {
+            return {
+                ...state,
+                supply: action.payload,
+                error: null
             };
         }
     }

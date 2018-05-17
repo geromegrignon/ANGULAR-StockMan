@@ -6,11 +6,11 @@
   </button>
   <h2 *ngIf="readonly">{{supply?.name}}</h2>
   <button mat-raised-button (click)="editMode()" *ngIf="readonly">Editer</button>
-  <button mat-raised-button (click)="save()" *ngIf="!readonly" [disabled]="supplyForm.pristine">Sauvegarder</button>
+  <button mat-raised-button (click)="save()" *ngIf="!readonly" [disabled]="supplyForm.pristine" form="ngForm">Sauvegarder</button>
   <button mat-raised-button (click)="cancel()" *ngIf="!readonly">Annuler</button>
 </mat-toolbar>
   <mat-card>
-    <form [formGroup]="supplyForm" [connectForm]="supply$ | async" (ngSubmit)="save()" fxLayout='column'>
+    <form [formGroup]="supplyForm" [connectForm]="supply$ | async" fxLayout='column' #ngForm>
     <mat-form-field>
     <input matInput type="text" [readonly]="readonly" formControlName="name" placeholder="Nom">
     </mat-form-field>
@@ -25,6 +25,12 @@
         <input matInput type="text" [readonly]="readonly" formControlName="alertStock" placeholder="Niveau d'alerte">
       </mat-form-field>
     </div>
+  </form>
+  <form [formGroup] fxLayoutGap="20px">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Quantité">
+    </mat-form-field>
+    <button mat-raised-button>Commander</button>
   </form>
   </mat-card>
 </div>

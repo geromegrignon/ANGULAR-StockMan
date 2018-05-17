@@ -11,7 +11,11 @@ import {
     TryFetchSelectedSupply,
     TRY_FETCH_SELECTED_SUPPLY,
     FetchSelectedSupplySuccess,
-    FetchSelectedSupplyError
+    FetchSelectedSupplyError,
+    TryUpdateSupply,
+    TRY_UPDATE_SUPPLY,
+    UpdateSupplySuccess,
+    UpdateSupplyError
 } from './supply.actions';
 import { switchMap, map, catchError, mergeMap } from 'rxjs/operators';
 import { Supply } from '../../../shared/model/supply.model';
@@ -43,6 +47,16 @@ export class SupplyEffects {
         mergeMap((id: number) => this.supplyService.getSupply(id).pipe(
             map((supply: Supply) => new FetchSelectedSupplySuccess(supply)),
             catchError(error => of(new FetchSelectedSupplyError(error)))
+        ))
+    );
+
+    @Effect()
+    updateSupply$ = this.actions$.pipe(
+        ofType<TryUpdateSupply>(TRY_UPDATE_SUPPLY),
+        map((action) => action.payload),
+        mergeMap((supply: Supply) => this.supplyService.updateSupply(supply).pipe(
+            map((updatedSupply: Supply) => new UpdateSupplySuccess(supply)),
+            catchError(error => of(new UpdateSupplyError(error)))
         ))
     );
 

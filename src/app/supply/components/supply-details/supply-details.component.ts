@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Supply } from '../../../shared/model/supply.model';
 import { Store, select } from '@ngrx/store';
 import { State } from '../../../shared/store';
-import { TryFetchSelectedSupply } from '../../shared/store/supply.actions';
+import { TryFetchSelectedSupply, TryUpdateSupply } from '../../shared/store/supply.actions';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { errorSelectedSupply, selectedSupply } from '../../shared/store/supply.selectors';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, NgForm } from '@angular/forms';
 import { map, tap } from 'rxjs/operators';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
+import { SupplyService } from '../../shared/services/supply.service';
 
 @Component({
   selector: 'app-supply-details',
@@ -25,7 +26,8 @@ export class SupplyDetailsComponent implements OnInit {
   constructor(
     private store: Store<State>,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private supplyService: SupplyService
   ) {}
 
   ngOnInit() {
@@ -56,7 +58,9 @@ export class SupplyDetailsComponent implements OnInit {
     this.store.dispatch(new TryFetchSelectedSupply(this.id));
   }
 
-  save() {}
+  save() {
+    this.store.dispatch(new TryUpdateSupply(this.supplyForm.value));
+  }
 
 
 }

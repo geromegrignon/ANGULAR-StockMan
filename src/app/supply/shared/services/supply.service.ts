@@ -20,4 +20,8 @@ export class SupplyService {
   getSupply(id: number): Observable<Supply> {
     return this.http.get<Supply>(`${HOST}/${ENDPOINT}/` + id);
   }
+
+  updateSupply(supply: Supply): Observable<Supply> {
+    return this.http.put<Supply>(`${HOST}/${ENDPOINT}/${supply.id}`, supply);
+  }
 }
