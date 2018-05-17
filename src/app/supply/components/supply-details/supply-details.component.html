@@ -1,0 +1,30 @@
+<div *ngIf="supply$ | async; let supply">
+<mat-toolbar fxLayoutAlign='space-between center'>
+  <button mat-raised-button routerLink="../" fxHide.xs>
+    <mat-icon>keyboard_backspace</mat-icon>
+    retour à la liste
+  </button>
+  <h2 *ngIf="readonly">{{supply?.name}}</h2>
+  <button mat-raised-button (click)="editMode()" *ngIf="readonly">Editer</button>
+  <button mat-raised-button (click)="save()" *ngIf="!readonly" [disabled]="supplyForm.pristine">Sauvegarder</button>
+  <button mat-raised-button (click)="cancel()" *ngIf="!readonly">Annuler</button>
+</mat-toolbar>
+  <mat-card>
+    <form [formGroup]="supplyForm" [connectForm]="supply$ | async" (ngSubmit)="save()" fxLayout='column'>
+    <mat-form-field>
+    <input matInput type="text" [readonly]="readonly" formControlName="name" placeholder="Nom">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput type="text" [readonly]="readonly" formControlName="description" placeholder="Description"></textarea>
+    </mat-form-field>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="30px">
+      <mat-form-field fxFlex="50%">
+        <input matInput type="text" [readonly]="readonly" formControlName="unitsInStock" placeholder="Stock actuel" >
+      </mat-form-field>
+      <mat-form-field fxFlex="50%">
+        <input matInput type="text" [readonly]="readonly" formControlName="alertStock" placeholder="Niveau d'alerte">
+      </mat-form-field>
+    </div>
+  </form>
+  </mat-card>
+</div>

@@ -1,0 +1,9 @@
+mat-expansion-panel {
+    margin: 0;
+}
+mat-card {
+    margin: 10px;
+}
+mat-drawer {
+    margin: 20px;
+}
