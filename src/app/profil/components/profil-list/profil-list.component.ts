@@ -1,21 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Observable } from 'rxjs';
-import { Supply } from '../../../shared/model/supply.model';
+import { MatPaginator, MatSort } from '@angular/material';
 import { Store, select } from '@ngrx/store';
 import { State } from '../../../shared/store';
-import { resultSuppliesSelector, errorSuppliesSelector } from '../../shared/store/supply.selectors';
-import { map, tap } from 'rxjs/operators';
-import { TryFetchSupplies, FetchSuppliesError } from '../../shared/store/supply.actions';
 
 @Component({
-  selector: 'app-supply-list',
-  templateUrl: './supply-list.component.html',
-  styleUrls: ['./supply-list.component.css']
+  selector: 'app-profil-list',
+  templateUrl: './profil-list.component.html',
+  styleUrls: ['./profil-list.component.css']
 })
-export class SupplyListComponent implements OnInit {
-  public supplyColumns = ['name', 'description', 'stock'];
-  public supplySource = undefined;
+export class ProfilListComponent implements OnInit {
+  public profilColumns = ['username', 'email', 'firstName', 'lastName'];
+  public profilSource = undefined;
   public error$: Observable<string>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -26,6 +22,7 @@ export class SupplyListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    /*
       this.store.pipe(
         select(resultSuppliesSelector)
       ).subscribe(
@@ -37,6 +34,7 @@ export class SupplyListComponent implements OnInit {
       );
       this.store.dispatch(new TryFetchSupplies());
       this.error$ = this.store.pipe(select(errorSuppliesSelector));
+      */
   }
 
   applyFilter(filterValue: string) {

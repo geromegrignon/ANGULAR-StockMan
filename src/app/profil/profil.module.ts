@@ -3,6 +3,8 @@ import { ProfilComponent } from './profil.component';
 import { RouterModule } from '@angular/router';
 import { PROFILE_ROUTES } from './profil.routing';
 import { LayoutModule } from '../shared/modules/layout.module';
+import { ProfilDetailsComponent } from './components/profil-details/profil-details.component';
+import { ProfilListComponent } from './components/profil-list/profil-list.component';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { LayoutModule } from '../shared/modules/layout.module';
     LayoutModule
   ],
   declarations: [
-    ProfilComponent
+    ProfilComponent,
+    ProfilDetailsComponent,
+    ProfilListComponent
   ]
 })
 export class ProfilModule { }

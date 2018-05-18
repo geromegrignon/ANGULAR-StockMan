@@ -13,6 +13,7 @@ import { TryRefreshToken } from '../store/actions/auth.actions';
   providedIn: 'root'
 })
 export class AuthService {
+  public currentUser: BehaviorSubject<User> = new BehaviorSubject(null);
   public jwtToken: BehaviorSubject<JwtToken> = new BehaviorSubject({
     isAuthenticated: null,
     token: null
@@ -97,4 +98,7 @@ export class AuthService {
     localStorage.removeItem('jwt');
     this.router.navigate(['/signin']);
   }
+  public getCurrentUser(): Observable<User> {
+    return this.http.get<User>('/api/user/current');
+}
 }
