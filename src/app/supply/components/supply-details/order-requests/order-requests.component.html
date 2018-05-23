@@ -1,0 +1,17 @@
+    <mat-table [dataSource]="orderRequestSource" matSort>
+      <ng-container matColumnDef="deliveryDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Date de livraison</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.deliveryDate}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Quantité</mat-header-cell>
+        <mat-cell *matCellDef="let row" fxHide.xs>{{row.quantity}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header  fxHide.xs>Status</mat-header-cell>
+        <mat-cell *matCellDef="let row"></mat-cell>
+      </ng-container>
+      <!-- Définition des colonnes -->
+      <mat-header-row *matHeaderRowDef="orderRequestColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: orderRequestColumns"></mat-row>
+    </mat-table>

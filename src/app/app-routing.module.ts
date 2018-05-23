@@ -9,6 +9,7 @@ export const ROUTES: Routes = [
     {path: 'signup', component: SignupComponent},
     {path: 'signin', component: SigninComponent},
     {path: 'profil', canActivate: [AuthGuard], loadChildren: './profil/profil.module#ProfilModule'},
-    {path: 'supply', loadChildren: './supply/supply.module#SupplyModule'}
+    {path: 'supply', loadChildren: './supply/supply.module#SupplyModule'},
+    {path: 'provider', loadChildren: './provider/provider.module#ProviderModule'}
 ];
 

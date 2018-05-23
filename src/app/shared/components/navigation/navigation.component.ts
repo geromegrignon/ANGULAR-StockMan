@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
   public links: {name: string, path: string, icon: string}[] = [
-    {name: 'Fournitures', path: 'supply', icon: 'description'},
-    {name: 'Commande', path: 'cart', icon: 'shopping_cart'}
+    {name: 'Articles', path: 'supply', icon: 'description'},
+    {name: 'Fournisseurs', path: 'provider', icon: 'assignment_ind'}
   ];
 
   constructor() { }

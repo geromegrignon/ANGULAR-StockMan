@@ -40,6 +40,6 @@ export class ProfilListComponent implements OnInit {
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.supplySource.filter = filterValue;
+    this.profilSource.filter = filterValue;
   }
 }

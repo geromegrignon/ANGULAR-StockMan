@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/model/user.model';
-import { UserService } from '../shared/services/user.service';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { State } from '../shared/store';

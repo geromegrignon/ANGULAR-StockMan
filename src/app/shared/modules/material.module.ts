@@ -15,7 +15,11 @@ import {
   MatExpansionModule,
   MatGridListModule,
   MatChipsModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatDividerModule,
+  MatSelectModule
  } from '@angular/material';
 
 const MODULE = [
@@ -34,7 +38,11 @@ const MODULE = [
   MatExpansionModule,
   MatGridListModule,
   MatChipsModule,
-  MatBadgeModule
+  MatBadgeModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatDividerModule,
+  MatSelectModule
 ];
 
 @NgModule({

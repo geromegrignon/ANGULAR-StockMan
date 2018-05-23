@@ -27,7 +27,6 @@ import { empty, of, Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { State } from '..';
 import { tokenSelector } from '../selectors/auth.selectors';
-import { UserService } from '../../services/user.service';
 
 @Injectable()
 export class AuthEffects {
@@ -37,8 +36,7 @@ export class AuthEffects {
         private actions$: Actions,
         private auth: AuthService,
         private router: Router,
-        private store: Store<State>,
-        private userService: UserService
+        private store: Store<State>
     ) {}
 
     @Effect()
@@ -128,7 +126,7 @@ export class AuthEffects {
     TryFetchCurrentUser$ = this.actions$.pipe(
         ofType<TryFetchCurrentUser>(TRY_FETCH_CURRENT_USER),
         switchMap(() => {
-         return this.userService.getCurrentUser();
+         return this.auth.getCurrentUser();
         }),
         map( (user: User) => {
             return new SetCurrentUser(user);

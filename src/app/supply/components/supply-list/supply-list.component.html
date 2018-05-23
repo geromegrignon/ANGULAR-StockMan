@@ -1,7 +1,6 @@
-<mat-card>
   <section *ngIf='supplySource'>
   <mat-toolbar fxLayoutAlign='space-between center'>
-    Liste des fournitures
+    {{provider.name}}
     <span fxHide.xs>
     <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="filtre" >
@@ -11,7 +10,7 @@
     <mat-table [dataSource]="supplySource" matSort>
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
-        <mat-cell *matCellDef="let row"><a routerLink="{{row.id}}">{{row.name}}</a></mat-cell>
+        <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="description">
         <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs>Description</mat-header-cell>
@@ -21,17 +20,15 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header>Stock</mat-header-cell>
         <mat-cell *matCellDef="let row">{{row.unitsInStock}}</mat-cell>
       </ng-container>
+      <ng-container matColumnDef="alerte">
+        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <div *ngIf="alert(row)">{{alertMessage}}</div>
+        </mat-cell>
+      </ng-container>
       <!-- Définition des colonnes -->
       <mat-header-row *matHeaderRowDef="supplyColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: supplyColumns" routerLink="{{row.id}}"></mat-row>
     </mat-table>
-  
-    <!-- pagination -->
-    <mat-paginator #paginator
-      [pageSize]=7
-      [showFirstLastButtons]="true">
-    </mat-paginator>
   </section>
-  <div *ngIf="error$  | async; let error">{{ error }}</div>
-</mat-card>
   

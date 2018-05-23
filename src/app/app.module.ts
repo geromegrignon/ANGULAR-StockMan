@@ -20,6 +20,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { reducersMap } from './shared/store';
 import { AuthEffects } from './shared/store/effects/auth.effects';
+import { ProviderEffects } from './shared/store/effects/provider.effects';
 
 
 
@@ -31,7 +32,7 @@ import { AuthEffects } from './shared/store/effects/auth.effects';
     BrowserModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducersMap),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, ProviderEffects]),
     StoreDevtoolsModule.instrument({
       name: 'Ngrx Stockman'
     }),

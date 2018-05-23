@@ -1,3 +1,41 @@
-<p>
-  order-cart-list works!
-</p>
+<mat-card>
+  <section *ngIf='orderSource'>
+  <mat-toolbar fxLayoutAlign='space-between center'>
+    Liste des fournitures
+    <span fxHide.xs>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="filtre" >
+      </mat-form-field>
+     </span> 
+  </mat-toolbar>
+    <mat-table [dataSource]="orderSource" matSort>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs>Description</mat-header-cell>
+        <mat-cell *matCellDef="let row" fxHide.xs>{{row.description}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Quantité</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.quantity}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+        <mat-cell *matCellDef="let row"><mat-icon>delete_forever</mat-icon></mat-cell>
+      </ng-container>
+      <!-- Définition des colonnes -->
+      <mat-header-row *matHeaderRowDef="oderColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: oderColumns" routerLink="{{row.id}}"></mat-row>
+    </mat-table>
+  
+    <!-- pagination -->
+    <mat-paginator #paginator
+      [pageSize]=7
+      [showFirstLastButtons]="true">
+    </mat-paginator>
+  </section>
+  <div *ngIf="error$  | async; let error">{{ error }}</div>
+</mat-card>
+  

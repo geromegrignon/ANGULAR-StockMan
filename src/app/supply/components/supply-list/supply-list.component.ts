@@ -1,12 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Observable } from 'rxjs';
 import { Supply } from '../../../shared/model/supply.model';
 import { Store, select } from '@ngrx/store';
 import { State } from '../../../shared/store';
-import { resultSuppliesSelector, errorSuppliesSelector } from '../../shared/store/supply.selectors';
+import { suppliesSelector, errorSuppliesSelector } from '../../shared/store/supply.selectors';
 import { map, tap } from 'rxjs/operators';
 import { TryFetchSupplies, FetchSuppliesError } from '../../shared/store/supply.actions';
+import { Provider } from '../../../shared/model/provider.model';
 
 @Component({
   selector: 'app-supply-list',
@@ -14,34 +15,36 @@ import { TryFetchSupplies, FetchSuppliesError } from '../../shared/store/supply.
   styleUrls: ['./supply-list.component.css']
 })
 export class SupplyListComponent implements OnInit {
-  public supplyColumns = ['name', 'description', 'stock'];
-  public supplySource = undefined;
-  public error$: Observable<string>;
+  public supplyColumns = ['name', 'description', 'stock', 'alerte'];
+  public supplySource;
+  public alertMessage: string;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  @Input() provider: Provider;
 
   constructor(
     private store: Store<State>
   ) { }
 
   ngOnInit() {
-      this.store.pipe(
-        select(resultSuppliesSelector)
-      ).subscribe(
-        (supplies: Supply[]) => {
-          this.supplySource = new MatTableDataSource(supplies);
-          this.supplySource.paginator = this.paginator;
-          this.supplySource.sort = this.sort;
-        }
-      );
-      this.store.dispatch(new TryFetchSupplies());
-      this.error$ = this.store.pipe(select(errorSuppliesSelector));
+      this.supplySource = new MatTableDataSource(this.provider.supplyList);
+      this.supplySource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.supplySource.filter = filterValue;
+  }
+
+  alert(supply: Supply) {
+    if (supply.unitsInStock < supply.alertStock) {
+      this.alertMessage = 'stock à renouveler';
+      return true;
+    } else {
+      return false;
+    }
+
   }
 }

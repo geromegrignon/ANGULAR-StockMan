@@ -37,7 +37,7 @@ export class SupplyEffects {
         switchMap( () => this.supplyService.getAllSupplies().pipe(
            map((supplies: Supply[]) =>  new FetchSuppliesSuccess(supplies)),
            catchError(error => of(new FetchSuppliesError(error)))
-        )),
+        ))
     );
 
     @Effect()

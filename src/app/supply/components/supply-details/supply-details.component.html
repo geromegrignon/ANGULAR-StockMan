@@ -1,6 +1,6 @@
 <div *ngIf="supply$ | async; let supply">
 <mat-toolbar fxLayoutAlign='space-between center'>
-  <button mat-raised-button routerLink="../" fxHide.xs>
+  <button mat-raised-button fxHide.xs (click)="backToList()" >
     <mat-icon>keyboard_backspace</mat-icon>
     retour à la liste
   </button>
@@ -9,7 +9,8 @@
   <button mat-raised-button (click)="save()" *ngIf="!readonly" [disabled]="supplyForm.pristine" form="ngForm">Sauvegarder</button>
   <button mat-raised-button (click)="cancel()" *ngIf="!readonly">Annuler</button>
 </mat-toolbar>
-  <mat-card>
+<div fxLayout="row" fxLayout.xs="column">
+<mat-card fxFlex="50%">
     <form [formGroup]="supplyForm" [connectForm]="supply$ | async" fxLayout='column' #ngForm>
     <mat-form-field>
     <input matInput type="text" [readonly]="readonly" formControlName="name" placeholder="Nom">
@@ -17,20 +18,38 @@
     <mat-form-field>
       <textarea matInput type="text" [readonly]="readonly" formControlName="description" placeholder="Description"></textarea>
     </mat-form-field>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="30px">
-      <mat-form-field fxFlex="50%">
+      <mat-form-field>
         <input matInput type="text" [readonly]="readonly" formControlName="unitsInStock" placeholder="Stock actuel" >
       </mat-form-field>
-      <mat-form-field fxFlex="50%">
+      <mat-form-field>
         <input matInput type="text" [readonly]="readonly" formControlName="alertStock" placeholder="Niveau d'alerte">
       </mat-form-field>
-    </div>
-  </form>
-  <form [formGroup] fxLayoutGap="20px">
+      <!--
+    <div formGroupName="provider">
     <mat-form-field>
-      <input matInput type="text" placeholder="Quantité">
+      <mat-select placeholder="Nom du fournisseur" [disabled]="readonly" formControlName="name">
+        <mat-option *ngFor="let provider of providers$ | async" [value]="provider.name" >{{provider.name}}</mat-option>
+      </mat-select>
     </mat-form-field>
-    <button mat-raised-button>Commander</button>
+    </div>
+    -->
   </form>
-  </mat-card>
+  <form [formGroup]="orderForm" fxLayoutGap="20px" (ngSubmit)="addToOrder()">
+    <mat-form-field>
+      <input matInput type="text" placeholder="Quantité" formControlName="quantity">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <button mat-raised-button color="primary"><mat-icon>list_alt</mat-icon>Ajouter au panier</button>
+  </form>
+</mat-card>
+<mat-card fxFlex="50%">
+<app-order-requests [supply]="supply"></app-order-requests>
+</mat-card>
+</div>
+  
+  
 </div>

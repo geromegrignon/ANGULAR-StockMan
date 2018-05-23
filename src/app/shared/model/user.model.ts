@@ -1,7 +1,11 @@
-export interface User {
+import { Audit } from './audit.model';
+import { Contact } from './contact.model';
+import { OrderRequest } from './orderRequest.model';
+
+export interface User extends Audit, Contact {
+    id?: number;
     username: string;
-    email: string;
     password?: string;
-    firstName: string;
-    LastName: string;
+    // droits utilisateur
+    requestList: OrderRequest[];
 }

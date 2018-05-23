@@ -3,7 +3,7 @@ import { SupplyState } from './supply.reducer';
 
 export const supplySelector = createFeatureSelector('supply');
 
-export const resultSuppliesSelector = createSelector(supplySelector,
+export const suppliesSelector = createSelector(supplySelector,
     (supplyState: SupplyState) => supplyState.supplies);
 
 export const errorSuppliesSelector = createSelector(supplySelector,
