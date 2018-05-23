@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Provider } from '../model/provider.model';
 
 const HOST = 'http://localhost:8080/api';
-const ENDPOINT = 'provider';
+const ENDPOINT = 'provider2';
 
 @Injectable({
   providedIn: 'root'

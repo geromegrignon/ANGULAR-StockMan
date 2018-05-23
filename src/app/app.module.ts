@@ -21,12 +21,14 @@ import { environment } from '../environments/environment';
 import { reducersMap } from './shared/store';
 import { AuthEffects } from './shared/store/effects/auth.effects';
 import { ProviderEffects } from './shared/store/effects/provider.effects';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

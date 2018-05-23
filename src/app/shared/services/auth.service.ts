@@ -24,9 +24,7 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     private store: Store<State>
-  ) {
-    // this.initToken();
-   }
+  ) { }
 
    public initTimer() {
      return timer(2000, 5000).pipe(
@@ -39,33 +37,6 @@ export class AuthService {
    public tryRefreshToken(): Observable<string> {
      return this.http.get<string>('/api/auth/refresh-token');
    }
-       /*
-      switchMap(() => {
-        if (localStorage.getItem('jwt')) {
-          console.log('try refresh token');
-          return this.http.get<string>('/api/auth/refresh-token').pipe(
-            tap((token: string) => {
-              this.jwtToken.next({
-                isAuthenticated: true,
-                token: token
-              });
-              localStorage.setItem('jwt', token);
-            })
-          );
-        } else {
-          console.log('no token to refresh');
-          return of(null);
-        }
-      })
-     ).subscribe(() => {}, err => {
-       this.jwtToken.next({
-         isAuthenticated: false,
-         token: null
-       });
-       localStorage.removeItem('jwt');
-       this.subscription.unsubscribe();
-     });
-     */
 
    public initToken(): void {
      const token = localStorage.getItem('jwt');
