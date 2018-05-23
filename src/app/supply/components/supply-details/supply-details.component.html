@@ -47,7 +47,13 @@
   </form>
 </mat-card>
 <mat-card fxFlex="50%">
+  <div *ngIf=displayActiveOrderRequests(supply)>
 <app-order-requests [supply]="supply"></app-order-requests>
+</div>
+<div *ngIf=!displayActiveOrderRequests(supply)>
+    <p>Pas de demandes actives</p>
+    </div>
+
 </mat-card>
 </div>
   

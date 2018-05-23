@@ -89,6 +89,14 @@ export class SupplyDetailsComponent implements OnInit {
     // to complete
   }
 
+  displayActiveOrderRequests(supply: Supply) {
+    if (supply.orderRequestList && supply.orderRequestList.length) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 
 
 }
