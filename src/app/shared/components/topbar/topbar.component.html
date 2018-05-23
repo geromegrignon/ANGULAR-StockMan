@@ -6,11 +6,11 @@
     [attr.role]="isHandset ? 'dialog' : 'navigation'"
     [mode]="(isHandset | async)!.matches ? 'over' : 'side'"
     [opened]="!(isHandset | async)!.matches">
-    <mat-toolbar color="primary">Menu</mat-toolbar>
+    <mat-toolbar >Menu</mat-toolbar>
     <app-navigation></app-navigation>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary" fxLayoutGap="15px">
+    <mat-toolbar  fxLayoutGap="15px">
       <button
         type="button"
         aria-label="Toggle sidenav"

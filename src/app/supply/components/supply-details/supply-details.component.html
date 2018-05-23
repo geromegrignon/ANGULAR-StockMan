@@ -1,5 +1,5 @@
 <div *ngIf="supply$ | async; let supply">
-<mat-toolbar fxLayoutAlign='space-between center'>
+<mat-toolbar fxLayoutAlign='space-between center' color="accent">
   <button mat-raised-button fxHide.xs (click)="backToList()" >
     <mat-icon>keyboard_backspace</mat-icon>
     retour à la liste
@@ -39,11 +39,11 @@
       <input matInput type="text" placeholder="Quantité" formControlName="quantity">
     </mat-form-field>
     <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+      <input matInput [matDatepicker]="picker" placeholder="Sélectionner une date" formControlName="date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button mat-raised-button color="primary"><mat-icon>list_alt</mat-icon>Ajouter au panier</button>
+    <button mat-raised-button color="accent"><mat-icon>list_alt</mat-icon>Ajouter au panier</button>
   </form>
 </mat-card>
 <mat-card fxFlex="50%">
