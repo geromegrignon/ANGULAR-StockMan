@@ -1,16 +1,19 @@
 <div fxLayout="row" fxLayoutAlign="center" class="my-5 py-5">
   <mat-card>
-    <mat-card-title>Connexion</mat-card-title>
+    <img mat-card-image src="../../../assets/images/avatar.png" alt="avatar" aria-hidden="true">
     <mat-card-content>
       <form fxLayout="column" fxLayoutGap="15px" [formGroup]="form">
         <mat-form-field>
-          <input matInput type="text" placeholder="email" formControlName="email">
+          <input matInput type="text" placeholder="Identifiant" formControlName="usernameOrEmail">
+          <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
         <mat-form-field>
-          <input matInput type="text" placeholder="password" formControlName="password">
+          <input matInput type="text" placeholder="Mot de passe" formControlName="password">
+          <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
-        <div *ngIf="error$ | async; let error">{{ error }}</div>
-        <button mat-raised-button color="primary" (click)="submit()">Connexion</button>
+        <div *ngIf="error$ | async; let error"></div>
+        <a href="" fxLayoutAlign="end">mot de passe oublié?</a>
+        <button mat-raised-button color="accent" (click)="submit()" [disabled]="form.invalid">Connexion</button>
       </form>
     </mat-card-content>
   </mat-card>

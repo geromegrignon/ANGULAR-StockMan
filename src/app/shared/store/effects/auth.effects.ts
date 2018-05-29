@@ -62,7 +62,7 @@ export class AuthEffects {
     TrySignin$ = this.actions$.pipe(
         ofType<TrySignin>(TRY_SIGNIN),
         map((action: TrySignin) => action.payload),
-        exhaustMap((credentials: {email: string, password: string}) =>
+        exhaustMap((credentials: {usernameOrEmail: string, password: string}) =>
         this.auth
         .signin(credentials)
         .pipe(
@@ -78,10 +78,10 @@ export class AuthEffects {
     signInSuccess$ = this.actions$.pipe(
         ofType<SigninSuccess>(SIGNIN_SUCCESS),
         tap(() => {
-            if (!this.subscription) {
-            this.subscription = this.auth.initTimer().subscribe();
-            this.router.navigate(['/']);
-        }
+            // if (!this.subscription) {
+            // this.subscription = this.auth.initTimer().subscribe();
+            this.router.navigate(['/dashboard']);
+        // }
         })
     );
 
@@ -114,11 +114,11 @@ export class AuthEffects {
     logOut$ = this.actions$.pipe(
         ofType<Logout>(LOGOUT),
         tap(() => {
-            if (!this.subscription) {
-            this.subscription.unsubscribe();
-        }
+        //     if (!this.subscription) {
+        //     this.subscription.unsubscribe();
+        // }
         localStorage.removeItem('token');
-        this.router.navigate(['/']);
+        this.router.navigate(['/signin']);
         })
     );
 

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
 import { JwtToken } from '../model/jwtToken.model';
-import { map, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { Store, select } from '@ngrx/store';
 import { State } from '../store';
 import { isLoggedIn } from '../store/selectors/auth.selectors';
@@ -14,16 +13,16 @@ import { isLoggedIn } from '../store/selectors/auth.selectors';
 export class AuthGuard implements CanActivate {
 
   constructor(
-    private auth: AuthService,
+    private router: Router,
     private store: Store<State>
   ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> {
-    return this.store.pipe(
-      take(1),
-      select(isLoggedIn)
-    );
+   if (!this.store.pipe(take(1), select(isLoggedIn))) {
+    this.router.navigate(['/signin']);
+   }
+   return this.store.pipe(take(1), select(isLoggedIn));
   }
 }

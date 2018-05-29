@@ -1,0 +1,21 @@
+<mat-table [dataSource]="requestSource" matSort>
+    <ng-container matColumnDef="supplyName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.supplyName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="quantity">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Quantité</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.quantity}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="deliveryDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Date de livraison</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.deliveryDate}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="userName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Demandeur</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.userName}}</mat-cell>
+        </ng-container>
+    <!-- Définition des colonnes -->
+    <mat-header-row *matHeaderRowDef="requestColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: requestColumns" routerLink="/supply/{{row.id}}"></mat-row>
+  </mat-table>

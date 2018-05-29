@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
+  <mat-sidenav *ngIf="isLoggedIn$ | async"
     #drawer
     class="sidenav"
     fixedInViewport="true"
@@ -11,14 +11,16 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar  fxLayoutGap="15px">
-      <button
+      <div *ngIf="isLoggedIn$ | async">
+      <button 
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
         *ngIf="(isHandset | async)!.matches">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        <mat-icon aria-label="Side nav toggle icon" >menu</mat-icon>
       </button>
+      </div>
       <span>Stockman</span>
       <span fxFlex="auto"></span>
       <mat-icon matBadge="15" matBadgeColor="warn">list_alt</mat-icon>

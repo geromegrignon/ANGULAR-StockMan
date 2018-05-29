@@ -1,0 +1,19 @@
+    <mat-table [dataSource]="alertSource" matSort>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="stock">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Stock</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.unitsInStock}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="alert">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Alerte</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.alertStock}}</mat-cell>
+        </ng-container>
+      <!-- Définition des colonnes -->
+      <mat-header-row *matHeaderRowDef="alertColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: alertColumns" routerLink="/supply/{{row.id}}"></mat-row>
+    </mat-table>
+
+  

@@ -9,6 +9,9 @@ import { Store } from '@ngrx/store';
 import { State } from '../store';
 import { TryRefreshToken } from '../store/actions/auth.actions';
 
+const HOST = 'http://localhost:8080/api';
+ const ENDPOINT = 'auth';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -35,7 +38,7 @@ export class AuthService {
    }
 
    public tryRefreshToken(): Observable<string> {
-     return this.http.get<string>('/api/auth/refresh-token');
+     return this.http.get<string>(`${HOST}/${ENDPOINT}/refreshToken`);
    }
 
    public initToken(): void {
@@ -54,11 +57,11 @@ export class AuthService {
    }
 
   public signup(user: User): Observable<User> {
-    return this.http.post<User>('/api/auth/signup', user);
+    return this.http.post<User>(`${HOST}/${ENDPOINT}/signup`, user);
   }
 
-  public signin(credentials: {email: string, password: string}): Observable<string> {
-    return this.http.post<string>('/api/auth/signin', credentials);
+  public signin(credentials: {usernameOrEmail: string, password: string}): Observable<string> {
+    return this.http.post<string>(`${HOST}/${ENDPOINT}/signin`, credentials);
   }
 
   public logout(): void {
@@ -69,6 +72,7 @@ export class AuthService {
     localStorage.removeItem('jwt');
     this.router.navigate(['/signin']);
   }
+
   public getCurrentUser(): Observable<User> {
     return this.http.get<User>('/api/user/current');
 }

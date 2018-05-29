@@ -2,11 +2,8 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Observable } from 'rxjs';
 import { Supply } from '../../../shared/model/supply.model';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { State } from '../../../shared/store';
-import { suppliesSelector, errorSuppliesSelector } from '../../shared/store/supply.selectors';
-import { map, tap } from 'rxjs/operators';
-import { TryFetchSupplies, FetchSuppliesError } from '../../shared/store/supply.actions';
 import { Provider } from '../../../shared/model/provider.model';
 
 @Component({

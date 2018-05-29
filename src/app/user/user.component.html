@@ -1,3 +1,8 @@
-<p>
-  user works!
-</p>
+<section fxLayout="row" fxLayout.xs="column">
+  <mat-card fxFlex= "40%">
+    <app-user-list></app-user-list>
+  </mat-card>
+  <div fxFlex= "60%">
+    <router-outlet></router-outlet>
+  </div>
+</section>

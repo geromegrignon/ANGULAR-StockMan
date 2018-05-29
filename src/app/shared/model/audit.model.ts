@@ -1,5 +1,4 @@
 export interface Audit {
-    id?: number;
-    createdAt: Date;
-    // updateDate
+    createdAt?: Date;
+    updatedAt?: Date;
 }

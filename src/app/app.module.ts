@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
 // Routing
-import { ROUTES } from './app-routing.module';
+import { ROUTES } from './app.routing';
 
 // Modules
 import { CoreModule } from './shared/modules/core.module';
@@ -21,20 +21,22 @@ import { environment } from '../environments/environment';
 import { reducersMap } from './shared/store';
 import { AuthEffects } from './shared/store/effects/auth.effects';
 import { ProviderEffects } from './shared/store/effects/provider.effects';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { SupplyEffects } from './shared/store/effects/supply.effects';
+import { RequestComponent } from './request/request.component';
+import { RequestEffects } from './shared/store/effects/request.effects';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    RequestComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducersMap),
-    EffectsModule.forRoot([AuthEffects, ProviderEffects]),
+    EffectsModule.forRoot([AuthEffects, ProviderEffects, SupplyEffects, RequestEffects]),
     StoreDevtoolsModule.instrument({
       name: 'Ngrx Stockman'
     }),

@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { State } from '../shared/store';
 import { Provider } from '../shared/model/provider.model';
-import { Observable, Subscription, from } from 'rxjs';
-import { providerListSelector } from '../shared/store/selectors/provider.selectors';
-import { TryFetchProviders } from '../shared/store/actions/provider.actions';
-import { SupplyService } from './shared/services/supply.service';
+import { Observable } from 'rxjs';
+import { providerListNotEmptySelector } from '../shared/store/selectors/provider.selectors';
+import { TryFetchProvidersNotEmpty } from '../shared/store/actions/provider.actions';
 import { filter, map } from 'rxjs/operators';
-import { ProviderService } from '../shared/services/provider.service';
+
 
 @Component({
   selector: 'app-supply',
@@ -15,22 +14,15 @@ import { ProviderService } from '../shared/services/provider.service';
   styleUrls: ['./supply.component.css']
 })
 export class SupplyComponent implements OnInit {
-  public providerList$: Observable<Provider[]> = this.store.pipe(select(providerListSelector));
-  public subscription: Subscription;
+  public providerList$: Observable<Provider[]> = this.store.pipe(select(providerListNotEmptySelector));
 
-  constructor(private store: Store<State>, private providerService: ProviderService) { }
+  constructor(
+    private store: Store<State>) { }
 
   ngOnInit() {
-    this.store.dispatch(new TryFetchProviders());
-
-    // Sébastien
-    // modus operandi : je récupère une liste de providers qui ont une liste de supply(supplyList)
-    // objectif : n'afficher que les providers qui ont une liste de supply (affichage en localhost:8080/supply)
-    /*
-    this.providerService.getAllProviders().pipe(
-      filter((provider: Provider) => provider.supplyList != null)
-    ).subscribe();
-    */
+    this.store.dispatch(new TryFetchProvidersNotEmpty());
+  //  this.providerService.getAllProviders().pipe(
+  //    map(x => x.filter(xt => xt.supplyList))).subscribe();
 
   }
 }

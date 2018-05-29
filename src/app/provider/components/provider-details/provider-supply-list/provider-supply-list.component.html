@@ -1,0 +1,27 @@
+<section *ngIf='supplySource'>
+  <mat-toolbar fxLayoutAlign='space-between center'>
+    Fournitures associées
+    <span fxHide.xs>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="filtre" >
+      </mat-form-field>
+     </span> 
+  </mat-toolbar>
+  <mat-table [dataSource]="supplySource" matSort>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs>Description</mat-header-cell>
+      <mat-cell *matCellDef="let row" fxHide.xs>{{row.description}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="stock">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Stock</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.unitsInStock}}</mat-cell>
+    </ng-container>
+    <!-- Définition des colonnes -->
+    <mat-header-row *matHeaderRowDef="supplyColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: supplyColumns" routerLink="{{row.id}}"></mat-row>
+  </mat-table>
+  </section>

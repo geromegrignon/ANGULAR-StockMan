@@ -1,3 +1,8 @@
-<p>
-  provider works!
-</p>
+<section fxLayout="row" fxLayout.xs="column">
+  <mat-card fxFlex= "40%">
+    <app-provider-list></app-provider-list>
+  </mat-card>
+  <div fxFlex= "60%">
+    <router-outlet></router-outlet>
+  </div>
+</section>

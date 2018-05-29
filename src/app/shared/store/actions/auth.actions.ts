@@ -4,11 +4,11 @@ import { User } from '../../model/user.model';
 
 export const TRY_SIGNUP = '[ user ] try signup';
 export const SIGNUP_SUCCESS = '[ user ] signup success';
-export const SIGNUP_ERROR = '[ user ] signup error';
+export const SIGNUP_ERROR = '!! [ user ] signup error';
 
 export const TRY_SIGNIN = '[ user ] try signin';
 export const SIGNIN_SUCCESS = '[ user ] signin success';
-export const SIGNIN_ERROR = '[ user ] signin error';
+export const SIGNIN_ERROR = '!! [ user ] signin error';
 
 export const TRY_FETCH_CURRENT_USER = '[ user ] try fetch current user';
 export const SET_CURRENT_USER = '[ user ] set current user';
@@ -34,7 +34,7 @@ export class SignupError implements Action {
 
 export class TrySignin implements Action {
     readonly type = TRY_SIGNIN;
-    constructor(public payload: {email: string, password: string}) {}
+    constructor(public payload: {usernameOrEmail: string, password: string}) {}
 }
 
 export class SigninSuccess implements Action {

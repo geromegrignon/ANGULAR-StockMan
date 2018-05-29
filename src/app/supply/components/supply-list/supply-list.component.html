@@ -23,7 +23,11 @@
       <ng-container matColumnDef="alerte">
         <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <div *ngIf="alert(row)">{{alertMessage}}</div>
+          <div *ngIf="alert(row)">
+            <mat-chip-list>
+              <mat-chip color="warn" selected="true">{{alertMessage}}</mat-chip>
+            </mat-chip-list>
+          </div>
         </mat-cell>
       </ng-container>
       <!-- Définition des colonnes -->

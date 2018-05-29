@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
 import { State } from '../../shared/store';
 import { TrySignin } from '../../shared/store/actions/auth.actions';
@@ -22,8 +22,8 @@ export class SigninComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      email: [''],
-      password: ['']
+      usernameOrEmail: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 

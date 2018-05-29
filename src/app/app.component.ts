@@ -13,6 +13,6 @@ export class AppComponent {
   title = 'app';
 
   constructor(private store: Store<State>) {
-    this.store.dispatch(new TryRefreshToken());
+    // this.store.dispatch(new TryRefreshToken());
   }
 }

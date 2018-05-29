@@ -1,3 +1,23 @@
-<p>
-  user-list works!
-</p>
+<section *ngIf='userSource'>
+  <mat-toolbar fxLayoutAlign='space-between center'>
+    <span fxHide.xs>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="filtre" >
+      </mat-form-field>
+     </span> 
+  </mat-toolbar>
+    <mat-table [dataSource]="userSource" matSort>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="siret">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs>n° Siret</mat-header-cell>
+        <mat-cell *matCellDef="let row" fxHide.xs>{{row.siret}}</mat-cell>
+        </ng-container>
+      <!-- Définition des colonnes -->
+      <mat-header-row *matHeaderRowDef="userColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: userColumns" routerLink="{{row.id}}"></mat-row>
+    </mat-table>
+  </section>
+  

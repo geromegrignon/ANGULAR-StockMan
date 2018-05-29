@@ -12,6 +12,7 @@ import { NavigationComponent } from '../components/navigation/navigation.compone
 import { LayoutModule } from './layout.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AlertDialogComponent } from '../../supply/components/supply-details/alert-dialog/alert-dialog.component';
 
 
 const COMPONENTS = [

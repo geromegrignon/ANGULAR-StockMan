@@ -5,7 +5,7 @@
     retour à la liste
   </button>
   <h2 *ngIf="readonly">{{supply?.name}}</h2>
-  <button mat-raised-button (click)="editMode()" *ngIf="readonly">Editer</button>
+  <button mat-raised-button (click)="editMode()" *ngIf="readonly">Modifier</button>
   <button mat-raised-button (click)="save()" *ngIf="!readonly" [disabled]="supplyForm.pristine" form="ngForm">Sauvegarder</button>
   <button mat-raised-button (click)="cancel()" *ngIf="!readonly">Annuler</button>
 </mat-toolbar>
@@ -39,11 +39,11 @@
       <input matInput type="text" placeholder="Quantité" formControlName="quantity">
     </mat-form-field>
     <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Sélectionner une date" formControlName="date">
+      <input matInput [matDatepicker]="picker" placeholder="Date de livraison" formControlName="deliveryDate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button mat-raised-button color="accent"><mat-icon>list_alt</mat-icon>Ajouter au panier</button>
+    <button mat-raised-button color="accent" (click)="createRequest()" ><mat-icon>list_alt</mat-icon>Ajouter au panier</button>
   </form>
 </mat-card>
 <mat-card fxFlex="50%">
@@ -52,10 +52,8 @@
 </div>
 <div *ngIf=!displayActiveOrderRequests(supply)>
     <p>Pas de demandes actives</p>
-    </div>
-
+</div>
 </mat-card>
 </div>
-  
   
 </div>

@@ -19,7 +19,8 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatDividerModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDialogModule
  } from '@angular/material';
 
 const MODULE = [
@@ -42,7 +43,8 @@ const MODULE = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatDividerModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDialogModule
 ];
 
 @NgModule({
