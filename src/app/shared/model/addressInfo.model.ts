@@ -1,4 +1,5 @@
 import { Audit } from './audit.model';
+import { Provider } from './provider.model';
 
 export interface AddressInfo extends Audit {
     id?: number;
@@ -7,4 +8,5 @@ export interface AddressInfo extends Audit {
     postalCode: number;
     city: string;
     country: string;
+    provider: Provider;
 }

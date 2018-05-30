@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProviderComponent } from './provider.component';
+import { ProviderListComponent } from './components/provider-list/provider-list.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatTableModule } from '@angular/material';
 
 describe('ProviderComponent', () => {
   let component: ProviderComponent;
@@ -8,7 +11,9 @@ describe('ProviderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProviderComponent ]
+      declarations: [ ProviderComponent, ProviderListComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [MatTableModule]
     })
     .compileComponents();
   }));

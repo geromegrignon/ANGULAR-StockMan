@@ -1,9 +1,10 @@
-import { Provider } from '@angular/compiler/src/core';
 import { Audit } from './audit.model';
 import { OrderRequest } from './orderRequest.model';
+import { Provider } from './provider.model';
 
 export interface Supply extends Audit {
     id?: number;
+    idReference: string;
     name: string;
     description: string;
     unitsInStock: number;

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AlertDialogComponent } from './alert-dialog.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('AlertDialogComponent', () => {
   let component: AlertDialogComponent;
@@ -8,7 +9,8 @@ describe('AlertDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlertDialogComponent ]
+      declarations: [ AlertDialogComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

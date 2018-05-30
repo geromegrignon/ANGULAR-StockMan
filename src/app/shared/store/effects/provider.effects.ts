@@ -16,7 +16,9 @@ import {
     TryUpdateProvider,
     TRY_UPDATE_PROVIDER,
     UpdateProviderSuccess,
-    UpdateProviderError
+    UpdateProviderError,
+    FetchProviderByIdError,
+    FetchProvidersNotEmptyError
 } from '../actions/provider.actions';
 import { switchMap, catchError, map, filter } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -44,8 +46,10 @@ export class ProviderEffects {
     fetchProviderById$ = this.actions$.pipe(
         ofType<TryFetchProviderById>(TRY_FETCH_PROVIDER_BY_ID),
         map((action: TryFetchProviderById) => action.payload),
-        switchMap((id: number) => this.providerService.getProviderById(id)),
-        map((provider: Provider) => new FetchProviderByIdSuccess(provider))
+        switchMap((id: number) => this.providerService.getProviderById(id).pipe(
+           map((provider: Provider) => new FetchProviderByIdSuccess(provider)),
+            catchError(error => of(new FetchProviderByIdError(error)))
+        )),
     );
 
     @Effect()
@@ -53,7 +57,7 @@ export class ProviderEffects {
         ofType<TryFetchProvidersNotEmpty>(TRY_FETCH_PROVIDERS_NOT_EMPTY),
         switchMap( () => this.providerService.getAllProvidersNotEmpty().pipe(
             map((providers: Provider[]) => new FetchProvidersNotEmptySuccess(providers)),
-            catchError(error => of(new FetchProvidersError(error)))
+            catchError(error => of(new FetchProvidersNotEmptyError(error)))
         ))
     );
 
@@ -61,8 +65,9 @@ export class ProviderEffects {
     updateProvider$ = this.actions$.pipe(
         ofType<TryUpdateProvider>(TRY_UPDATE_PROVIDER),
         map((action: TryUpdateProvider) => action.payload),
-        switchMap((provider: Provider) => this.providerService.updateProvider(provider)),
-        map((updatedProvider: Provider) => new UpdateProviderSuccess(updatedProvider)),
+        switchMap((provider: Provider) => this.providerService.updateProvider(provider).pipe(
+            map((updatedProvider: Provider) => new UpdateProviderSuccess(updatedProvider)),
         catchError(error => of(new UpdateProviderError(error)))
+        )),
     );
 }

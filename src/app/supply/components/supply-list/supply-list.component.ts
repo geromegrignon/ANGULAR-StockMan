@@ -12,17 +12,14 @@ import { Provider } from '../../../shared/model/provider.model';
   styleUrls: ['./supply-list.component.css']
 })
 export class SupplyListComponent implements OnInit {
-  public supplyColumns = ['name', 'description', 'stock', 'alerte'];
+  public supplyColumns = ['name', 'description', 'stock', 'alert'];
   public supplySource;
-  public alertMessage: string;
-
-  @ViewChild(MatSort) sort: MatSort;
+  public alertMessage: string = 'stock à renouveler';
 
   @Input() provider: Provider;
+  @ViewChild(MatSort) sort: MatSort;
 
-  constructor(
-    private store: Store<State>
-  ) { }
+  constructor(private store: Store<State>) { }
 
   ngOnInit() {
       this.supplySource = new MatTableDataSource(this.provider.supplyList);
@@ -37,11 +34,9 @@ export class SupplyListComponent implements OnInit {
 
   alert(supply: Supply) {
     if (supply.unitsInStock < supply.alertStock) {
-      this.alertMessage = 'stock à renouveler';
       return true;
     } else {
       return false;
     }
-
   }
 }

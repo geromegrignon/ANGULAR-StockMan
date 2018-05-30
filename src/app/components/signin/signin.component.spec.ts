@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SigninComponent } from './signin.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
 describe('SigninComponent', () => {
   let component: SigninComponent;
@@ -8,7 +11,10 @@ describe('SigninComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SigninComponent ]
+      declarations: [ SigninComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [ReactiveFormsModule],
+      providers: [Store]
     })
     .compileComponents();
   }));

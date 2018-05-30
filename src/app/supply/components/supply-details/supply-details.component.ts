@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Supply } from '../../../shared/model/supply.model';
 import { Store, select } from '@ngrx/store';
 import { State } from '../../../shared/store';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder, FormControl, Validators, NgForm } from '@angular/forms';
-import { Location } from '@angular/common';
 import { Provider } from '../../../shared/model/provider.model';
 import { TryFetchProviders } from '../../../shared/store/actions/provider.actions';
 import { errorProviderSelector, providerListSelector } from '../../../shared/store/selectors/provider.selectors';
@@ -37,13 +36,12 @@ export class SupplyDetailsComponent implements OnInit {
     private store: Store<State>,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private location: Location,
     private dialog: MatDialog,
-    private service: SupplyService
+    private service: SupplyService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    // get info through router
      this.id = +this.route.snapshot.paramMap.get('id');
     this.store.dispatch(new TryFetchSelectedSupply(this.id));
 
@@ -90,8 +88,7 @@ export class SupplyDetailsComponent implements OnInit {
   }
 
   backToList(): void {
-    // change to router.nagivate
-    this.location.back();
+    this.router.navigate(['/supply']);
   }
 
   addToOrder(): void {

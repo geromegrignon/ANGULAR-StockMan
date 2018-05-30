@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatSort, MatTableDataSource } from '@angular/material';
 import { State } from '../../../../shared/store';
 import { Store } from '@ngrx/store';
-import { Provider } from '@angular/compiler/src/core';
+import { Provider } from '../../../../shared/model/provider.model';
 
 @Component({
   selector: 'app-provider-supply-list',

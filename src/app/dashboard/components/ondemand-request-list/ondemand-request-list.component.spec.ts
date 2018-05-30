@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OndemandRequestListComponent } from './ondemand-request-list.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatTableModule } from '@angular/material';
 
 describe('OndemandRequestListComponent', () => {
   let component: OndemandRequestListComponent;
@@ -8,7 +10,9 @@ describe('OndemandRequestListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OndemandRequestListComponent ]
+      declarations: [ OndemandRequestListComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [MatTableModule]
     })
     .compileComponents();
   }));

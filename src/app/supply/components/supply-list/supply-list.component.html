@@ -20,12 +20,12 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header>Stock</mat-header-cell>
         <mat-cell *matCellDef="let row">{{row.unitsInStock}}</mat-cell>
       </ng-container>
-      <ng-container matColumnDef="alerte">
+      <ng-container matColumnDef="alert">
         <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
         <mat-cell *matCellDef="let row">
           <div *ngIf="alert(row)">
             <mat-chip-list>
-              <mat-chip color="warn" selected="true">{{alertMessage}}</mat-chip>
+              <mat-chip color="warn" selected="true">{{ alertMessage }}</mat-chip>
             </mat-chip-list>
           </div>
         </mat-cell>

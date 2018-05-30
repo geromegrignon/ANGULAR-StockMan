@@ -5,7 +5,6 @@ import { Provider } from '../shared/model/provider.model';
 import { Observable } from 'rxjs';
 import { providerListNotEmptySelector } from '../shared/store/selectors/provider.selectors';
 import { TryFetchProvidersNotEmpty } from '../shared/store/actions/provider.actions';
-import { filter, map } from 'rxjs/operators';
 
 
 @Component({

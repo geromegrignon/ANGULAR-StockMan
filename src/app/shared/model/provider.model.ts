@@ -10,5 +10,5 @@ export interface Provider extends Audit {
     name: string;
     addressInfo: AddressInfo;
     supplyList: Supply[];
-    // contactList: Contact[];
+    contactList: Contact[];
 }

@@ -23,15 +23,15 @@ import { AlertDialogComponent } from './components/supply-details/alert-dialog/a
 
 // Modules
 import { LayoutModule } from '../shared/modules/layout.module';
+
+// Resolver
 import { ProviderResolver } from '../shared/resolvers/provider.resolver';
 
 
 @NgModule({
   imports: [
     LayoutModule,
-    RouterModule.forChild(SUPPLY_ROUTES),
-    StoreModule.forFeature('supply', supplyReducer),
-    EffectsModule.forFeature([SupplyEffects])
+    RouterModule.forChild(SUPPLY_ROUTES)
   ],
   declarations: [
     SupplyComponent,

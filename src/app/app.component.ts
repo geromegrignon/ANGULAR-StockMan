@@ -6,13 +6,13 @@ import { TryRefreshToken } from './shared/store/actions/auth.actions';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: '<app-topbar></app-topbar>',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'app';
 
-  constructor(private store: Store<State>) {
-    // this.store.dispatch(new TryRefreshToken());
-  }
+  // constructor(private store: Store<State>) {
+  //   this.store.dispatch(new TryRefreshToken());
+  // }
 }

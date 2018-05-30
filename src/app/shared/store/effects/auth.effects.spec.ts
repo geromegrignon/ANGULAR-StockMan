@@ -11,7 +11,7 @@ import * as AuthActions from '../actions/auth.actions';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
-fdescribe('AuthEffects', () => {
+describe('AuthEffects', () => {
     let actions: Observable<any>;
     let effects: AuthEffects;
     let authService;

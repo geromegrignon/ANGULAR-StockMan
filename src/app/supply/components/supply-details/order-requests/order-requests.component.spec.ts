@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrderRequestsComponent } from './order-requests.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatTableModule } from '@angular/material';
 
 describe('OrderRequestsComponent', () => {
   let component: OrderRequestsComponent;
@@ -8,7 +10,9 @@ describe('OrderRequestsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderRequestsComponent ]
+      declarations: [ OrderRequestsComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [MatTableModule]
     })
     .compileComponents();
   }));
