@@ -9,9 +9,15 @@ describe('ProviderReducer', () => {
         const action = {} as any;
         expect(ProviderReducer.providerReducer(undefined, action)).toEqual(initialProviderState);
     });
-    it('should return error when FetchProvidersNotEmptyError action', () => {
+    it('should return error when FetchProviderListNotEmptyError action', () => {
         const { initialProviderState } = ProviderReducer;
-        const action = new ProviderActions.FetchProvidersNotEmptyError('error');
+        const action = new ProviderActions.FetchProviderListNotEmptyError('error');
+        const state = ProviderReducer.providerReducer(initialProviderState, action);
+        expect(state.error).toEqual('error');
+    });
+    it('should return error when CreateProviderError action', () => {
+        const { initialProviderState } = ProviderReducer;
+        const action = new ProviderActions.CreateProviderError('error');
         const state = ProviderReducer.providerReducer(initialProviderState, action);
         expect(state.error).toEqual('error');
     });
@@ -21,13 +27,13 @@ describe('ProviderReducer', () => {
         const state = ProviderReducer.providerReducer(initialProviderState, action);
         expect(state.error).toEqual('error');
     });
-    it('should return error when FetchProvidersError action', () => {
+    it('should return error when FetchProviderListError action', () => {
         const { initialProviderState } = ProviderReducer;
-        const action = new ProviderActions.FetchProvidersError('error');
+        const action = new ProviderActions.FetchProviderListError('error');
         const state = ProviderReducer.providerReducer(initialProviderState, action);
         expect(state.error).toEqual('error');
     });
-    it('should return error when FetchProvidersSuccess action', () => {
+    it('should return providers when FetchProviderListSuccess action', () => {
         const { initialProviderState } = ProviderReducer;
         const mockList = [{
             id: 1,
@@ -63,11 +69,11 @@ describe('ProviderReducer', () => {
         contactList: []
     }
 ];
-        const action = new ProviderActions.FetchProvidersSuccess(mockList);
+        const action = new ProviderActions.FetchProviderListSuccess(mockList);
         const state = ProviderReducer.providerReducer(initialProviderState, action);
-        expect(state.providers).toEqual(payload);
+        expect(state.providerList).toEqual(payload);
     });
-    it('should return error when FetchProvidersNotEmpty action', () => {
+    it('should return providers when FetchProvidersNotEmpty action', () => {
         const { initialProviderState } = ProviderReducer;
         const mockList = [{
             id: 1,
@@ -103,13 +109,13 @@ describe('ProviderReducer', () => {
         contactList: []
     }
 ];
-        const action = new ProviderActions.FetchProvidersNotEmptySuccess(mockList);
+        const action = new ProviderActions.FetchProviderListNotEmptySuccess(mockList);
         const state = ProviderReducer.providerReducer(initialProviderState, action);
-        expect(state.providersNotEmpty).toEqual(payload);
+        expect(state.providerListNotEmpty).toEqual(payload);
     });
-    it('should return error when FetchProvidersSuccess action', () => {
+    it('should return providers when FetchProvidersSuccess action', () => {
         const { initialProviderState } = ProviderReducer;
-        const mockList = {
+        const mock = {
             id: 1,
             siret: 793773103827162,
             name: 'Lyreco',
@@ -125,7 +131,29 @@ describe('ProviderReducer', () => {
         supplyList: [],
         contactList: []
     };
-        const action = new ProviderActions.FetchProviderByIdSuccess(mockList);
+        const action = new ProviderActions.FetchProviderByIdSuccess(mock);
+        const state = ProviderReducer.providerReducer(initialProviderState, action);
+        expect(state.provider).toEqual(payload);
+    });
+    it('should return new provider when CreateProviderSuccess action', () => {
+        const { initialProviderState } = ProviderReducer;
+        const mock = {
+            id: 1,
+            siret: 793773103827162,
+            name: 'Lyreco',
+            addressInfo: {} as AddressInfo,
+            supplyList: [],
+            contactList: []
+        };
+    const payload = {
+        id: 1,
+        siret: 793773103827162,
+        name: 'Lyreco',
+        addressInfo: {} as AddressInfo,
+        supplyList: [],
+        contactList: []
+    };
+        const action = new ProviderActions.CreateProviderSuccess(mock);
         const state = ProviderReducer.providerReducer(initialProviderState, action);
         expect(state.provider).toEqual(payload);
     });

@@ -4,10 +4,10 @@ import { ProviderState } from '../reducers/provider.reducer';
 export const providerSelector = createFeatureSelector('provider');
 
 export const providerListSelector = createSelector(providerSelector,
-    (providerState: ProviderState) => providerState.providers);
+    (providerState: ProviderState) => providerState.providerList);
 
 export const providerListNotEmptySelector = createSelector(providerSelector,
-    (providerState: ProviderState) => providerState.providersNotEmpty);
+    (providerState: ProviderState) => providerState.providerListNotEmpty);
 
 export const providerByIdSelector = createSelector(providerSelector,
     (providerState: ProviderState) => providerState.provider);

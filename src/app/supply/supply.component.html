@@ -1,3 +1,6 @@
-<mat-card>
-<app-supply-list *ngFor="let provider of providerList$ | async" [provider]="provider"></app-supply-list>
+<mat-card *ngIf="(providerList$ | async) as providerList; else loading">
+<app-supply-list *ngFor="let provider of providerList" [provider]="provider"></app-supply-list>
 </mat-card>
+<ng-template #loading>
+    Loading stuff...
+</ng-template>

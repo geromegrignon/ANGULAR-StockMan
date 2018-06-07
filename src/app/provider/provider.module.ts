@@ -6,6 +6,9 @@ import { PROVIDER_ROUTES } from './provider.routing';
 import { ProviderListComponent } from './components/provider-list/provider-list.component';
 import { ProviderDetailsComponent } from './components/provider-details/provider-details.component';
 import { ProviderSupplyListComponent } from './components/provider-details/provider-supply-list/provider-supply-list.component';
+import { ProviderListResolver } from '../shared/resolvers/providerList.resolver';
+import { ProviderFormComponent } from './components/provider-form/provider-form.component';
+import { ProviderNewComponent } from './components/provider-new/provider-new.component';
 
 @NgModule({
   imports: [
@@ -16,7 +19,12 @@ import { ProviderSupplyListComponent } from './components/provider-details/provi
     ProviderComponent,
     ProviderListComponent,
     ProviderDetailsComponent,
-    ProviderSupplyListComponent
+    ProviderSupplyListComponent,
+    ProviderFormComponent,
+    ProviderNewComponent
+  ],
+  providers: [
+    ProviderListResolver
   ]
 })
 export class ProviderModule { }

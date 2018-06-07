@@ -23,7 +23,7 @@ import { map, switchMap, catchError, exhaustMap, tap, withLatestFrom } from 'rxj
 import { User } from '../../model/user.model';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { empty, of, Subscription } from 'rxjs';
+import { empty, of, Subscription, EMPTY } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { State } from '..';
 import { tokenSelector } from '../selectors/auth.selectors';
@@ -101,11 +101,11 @@ export class AuthEffects {
                     if (this.subscription) {
                     this.subscription.unsubscribe();
                     }
-                    return empty();
+                    return EMPTY;
                 })
             );
             } else {
-                return empty();
+                return EMPTY;
             }
         }),
     );
@@ -133,7 +133,7 @@ export class AuthEffects {
         }),
         catchError( (err: any) => {
             console.log('error in tryFetchCurrentUser');
-            return empty();
+            return EMPTY;
         }));
 
 }

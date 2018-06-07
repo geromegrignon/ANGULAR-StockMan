@@ -15,7 +15,6 @@
         <mat-form-field>
           <input matInput type="text" placeholder="password" formControlName="password">
         </mat-form-field>
-        <div *ngIf="error$ | async; let error">{{ error }}</div>
         <button mat-raised-button color="accent" (click)="submit()">Inscription</button>
       </form>
     </mat-card-content>

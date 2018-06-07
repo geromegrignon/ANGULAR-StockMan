@@ -4,11 +4,12 @@ import { Audit } from './audit.model';
 import { Status } from './status.model';
 import { User } from './user.model';
 
-export interface OrderRequest extends Audit {
+export interface Request extends Audit {
     id?: number;
     quantity: number;
     deliveryDate: Date;
-    status: Status[];
+    activeStatus: string;
+    statusList: Status[];
     user: User;
     supply: Supply;
 

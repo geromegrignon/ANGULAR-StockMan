@@ -11,3 +11,6 @@ export const errorRequestSelector = createSelector(requestSelector,
 
 export const newRequestSelector = createSelector(requestSelector,
     (requestState: RequestState) => requestState.newRequest);
+
+export const singleRequestSelector = createSelector(requestSelector,
+    (requestState: RequestState) => requestState.request);

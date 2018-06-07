@@ -10,7 +10,7 @@ export class NavigationComponent implements OnInit {
     {name: 'Tableau de bord', path: 'dashboard', icon: 'dashboard'},
     {name: 'Articles', path: 'supply', icon: 'description'},
     {name: 'Fournisseurs', path: 'provider', icon: 'assignment_ind'},
-    {name: 'Utilisateurs', path: 'user', icon: 'person'}
+    {name: 'Utilisateurs', path: 'user', icon: 'people'}
   ];
 
   constructor() { }

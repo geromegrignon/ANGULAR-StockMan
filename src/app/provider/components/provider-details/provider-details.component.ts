@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Provider } from '../../../shared/model/provider.model';
 import { ProviderService } from '../../../shared/services/provider.service';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { State } from '../../../shared/store';
-import { TryUpdateProvider } from '../../../shared/store/actions/provider.actions';
+import { TryUpdateProvider, TryFetchProviderById } from '../../../shared/store/actions/provider.actions';
+import { providerByIdSelector } from '../../../shared/store/selectors/provider.selectors';
+import { Observable } from 'rxjs';
+import { ProviderFormComponent } from '../provider-form/provider-form.component';
+import { readonlySelector } from '../../../shared/store/selectors/form.selector';
 
 @Component({
   selector: 'app-provider-details',
@@ -13,13 +17,14 @@ import { TryUpdateProvider } from '../../../shared/store/actions/provider.action
   styleUrls: ['./provider-details.component.css']
 })
 export class ProviderDetailsComponent implements OnInit {
-  form: FormGroup;
-  id: number;
-  provider: Provider;
-  public readonly: boolean = true;
+  public id: number;
+  public provider$: Observable<Provider> = this.store.pipe(select(providerByIdSelector));
+  public provider: Provider;
+  public readonly$: Observable<boolean> = this.store.pipe(select(readonlySelector));
+
+  @ViewChild(ProviderFormComponent) providerForm: ProviderFormComponent;
 
   constructor(
-    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private providerservice: ProviderService,
     private store: Store<State>
@@ -27,54 +32,25 @@ export class ProviderDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      if (params.index) {
-        this.id = params.index;
-      // } else {
-      //   this.id = 1;
+      if (params.id) {
+        this.id = params.id;
+      } else {
+        this.id = 0;
       }
-    this.providerservice.getProviderById(+this.route.snapshot.paramMap.get('id')).subscribe(
-      (provider) => {
-        this.provider = provider;
-        this.initForm(provider);
-      });
+      this.store.dispatch(new TryFetchProviderById(this.id));
     });
     }
 
-  initForm(provider: Provider) {
-    this.form = this.formBuilder.group({
-      id: [provider.id],
-      name: [provider.name],
-      siret: [provider.siret],
-      addressInfo: this.formBuilder.group({
-        streetNumber: [provider.addressInfo.streetNumber],
-        streetName: [provider.addressInfo.streetName],
-        postalCode: [provider.addressInfo.postalCode],
-        city: [provider.addressInfo.city],
-        country: [provider.addressInfo.country]
-      }),
-      supplyList: [provider.supplyList]
-    });
-    console.log(provider);
-  }
-
   editMode(): void {
-    this.readonly = false;
+    this.providerForm.editMode();
   }
 
   cancel(): void {
-    // this.supply$ = this.store.pipe(select(selectedSupply));
-    this.readonly = true;
+    this.providerForm.cancel();
   }
 
   save(): void {
-    this.store.dispatch(new TryUpdateProvider(
-      {
-        id: this.id,
-      ...this.form.value
-      }
-    ));
-
-    this.readonly = true;
+    this.providerForm.save();
   }
 
 }

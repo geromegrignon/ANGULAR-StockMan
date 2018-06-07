@@ -1,0 +1,19 @@
+<h3 mat-dialog-title>{{data.quantity}}</h3>
+<mat-dialog-content fxLayout="row" fxLayoutGap="10px">
+  <div fxFlex="50%">
+    <p>{{data.quantity}}</p>
+    <p>{{data.deliveryDate | date:"dd/mm/yyyy"}}</p>
+  </div>
+  <mat-divider [vertical]="true"></mat-divider>
+  <div fxFlex="50%">
+    toto
+    <mat-list>
+      <mat-list-item *ngFor="let status of data.statusList">{{ status.name }}</mat-list-item>
+    </mat-list>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="space-around">
+  <button mat-raised-button>Valider</button>
+  <button mat-raised-button (click)="close()">Annuler</button>
+</mat-dialog-actions>
+<mat-dialog-actions></mat-dialog-actions>

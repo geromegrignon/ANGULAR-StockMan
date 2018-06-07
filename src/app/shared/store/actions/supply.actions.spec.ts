@@ -14,7 +14,7 @@ describe('SupplyActions', () => {
                     unitsInStock: 32,
                     alertStock: 2,
                     provider: {} as Provider,
-                    orderRequestList: []
+                    requestList: []
                 },
                 {
                     id: 1,
@@ -24,7 +24,7 @@ describe('SupplyActions', () => {
                     unitsInStock: 32,
                     alertStock: 2,
                     provider: {} as Provider,
-                    orderRequestList: []
+                    requestList: []
                 },
             ];
             const action = new SupplyActions.FetchSuppliesSuccess(payload);
@@ -66,7 +66,7 @@ describe('SupplyActions', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             };
             const action = new SupplyActions.FetchSelectedSupplySuccess(payload);
             expect({...action}).toEqual({
@@ -97,7 +97,7 @@ describe('SupplyActions', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             };
             const action = new SupplyActions.TryUpdateSupply(payload);
             expect({...action}).toEqual({
@@ -116,7 +116,7 @@ describe('SupplyActions', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             };
             const action = new SupplyActions.UpdateSupplySuccess(payload);
             expect({...action}).toEqual({
@@ -148,7 +148,7 @@ describe('SupplyActions', () => {
                     unitsInStock: 32,
                     alertStock: 2,
                     provider: {} as Provider,
-                    orderRequestList: []
+                    requestList: []
                 },
                 {
                     id: 1,
@@ -158,7 +158,7 @@ describe('SupplyActions', () => {
                     unitsInStock: 32,
                     alertStock: 2,
                     provider: {} as Provider,
-                    orderRequestList: []
+                    requestList: []
                 },
             ];
             const action = new SupplyActions.FetchAlertSuppliesSuccess(payload);

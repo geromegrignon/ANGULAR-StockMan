@@ -8,7 +8,7 @@ describe('ProviderSelectors', () => {
         it('should return providers', () => {
             const mockState = {
                 provider: {
-                providers: [{
+                providerList: [{
                     id: 1,
                     siret: 793773103827162,
                     name: 'Lyreco',
@@ -25,7 +25,7 @@ describe('ProviderSelectors', () => {
                     contactList: []
                 }
             ],
-                providersNotEmpty: null,
+                providerListNotEmpty: null,
                 provider: null,
                 error: null
             }};
@@ -53,8 +53,8 @@ describe('ProviderSelectors', () => {
         it('should return error', () => {
             const mockState = {
                 provider: {
-                    providers: null,
-                    providersNotEmpty: null,
+                    providerList: null,
+                    providerListNotEmpty: null,
                     provider: null,
                     error: 'error'
                 }
@@ -66,8 +66,8 @@ describe('ProviderSelectors', () => {
         it('should return providerListNotEmpty', () => {
             const mockState = {
                 provider: {
-                    providers: null,
-                    providersNotEmpty: [{
+                    providerList: null,
+                    providerListNotEmpty: [{
                         id: 1,
                         siret: 793773103827162,
                         name: 'Lyreco',
@@ -112,8 +112,8 @@ describe('ProviderSelectors', () => {
         it('should return providerByIdSelector', () => {
             const mockState = {
                 provider: {
-                    providers: null,
-                    providersNotEmpty: null,
+                    providerList: null,
+                    providerListNotEmpty: null,
                     provider:
                     {
                         id: 2,

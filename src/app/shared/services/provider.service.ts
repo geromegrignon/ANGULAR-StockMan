@@ -28,4 +28,8 @@ export class ProviderService {
   updateProvider(provider: Provider): Observable<Provider> {
     return this.http.put<Provider>(`${HOST}/${ENDPOINT}/${provider.id}`, provider);
   }
+
+  createProvider(provider: Provider): Observable<Provider> {
+    return this.http.post<Provider>(`${HOST}/${ENDPOINT}`, provider);
+  }
 }

@@ -4,7 +4,8 @@ import { StatusEnum } from '../enums/status.enum';
 
 export interface Status {
     id?: number;
-    message: StatusEnum;
+    name: string;
+    updatedAt?: Date;
+    comment: string;
     user: User;
-    updatedAt: Date;
 }

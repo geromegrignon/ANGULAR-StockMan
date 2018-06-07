@@ -1,5 +1,5 @@
 import { Audit } from './audit.model';
-import { OrderRequest } from './orderRequest.model';
+import { Request } from './request.model';
 import { Provider } from './provider.model';
 
 export interface Supply extends Audit {
@@ -10,5 +10,5 @@ export interface Supply extends Audit {
     unitsInStock: number;
     alertStock: number;
     provider: Provider;
-    orderRequestList: OrderRequest[];
+    requestList: Request[];
 }

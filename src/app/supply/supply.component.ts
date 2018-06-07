@@ -4,7 +4,6 @@ import { State } from '../shared/store';
 import { Provider } from '../shared/model/provider.model';
 import { Observable } from 'rxjs';
 import { providerListNotEmptySelector } from '../shared/store/selectors/provider.selectors';
-import { TryFetchProvidersNotEmpty } from '../shared/store/actions/provider.actions';
 
 
 @Component({
@@ -15,13 +14,8 @@ import { TryFetchProvidersNotEmpty } from '../shared/store/actions/provider.acti
 export class SupplyComponent implements OnInit {
   public providerList$: Observable<Provider[]> = this.store.pipe(select(providerListNotEmptySelector));
 
-  constructor(
-    private store: Store<State>) { }
+  constructor(private store: Store<State>) { }
 
   ngOnInit() {
-    this.store.dispatch(new TryFetchProvidersNotEmpty());
-  //  this.providerService.getAllProviders().pipe(
-  //    map(x => x.filter(xt => xt.supplyList))).subscribe();
-
   }
 }

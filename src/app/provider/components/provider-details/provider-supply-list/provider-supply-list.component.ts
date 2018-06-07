@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatSort, MatTableDataSource } from '@angular/material';
+import { MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
 import { State } from '../../../../shared/store';
 import { Store } from '@ngrx/store';
 import { Provider } from '../../../../shared/model/provider.model';
@@ -16,6 +16,7 @@ export class ProviderSupplyListComponent implements OnInit {
 
   @Input() provider: Provider;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
   constructor(
@@ -23,7 +24,11 @@ export class ProviderSupplyListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this.provider.supplyList) {
     this.supplySource = new MatTableDataSource(this.provider.supplyList);
+    this.supplySource.paginator = this.paginator;
+    this.supplySource.sort = this.sort;
+    }
   }
 
   applyFilter(filterValue: string) {

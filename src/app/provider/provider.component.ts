@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Provider } from '@angular/compiler/src/core';
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { State } from '../shared/store';
+import { providerListSelector } from '../shared/store/selectors/provider.selectors';
 
 
 @Component({
@@ -7,8 +12,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./provider.component.css']
 })
 export class ProviderComponent implements OnInit {
+  public providerList$: Observable<Provider[]> = this.store.pipe(select(providerListSelector));
 
-  constructor() { }
+  constructor(private store: Store<State>) { }
 
   ngOnInit() {
   }

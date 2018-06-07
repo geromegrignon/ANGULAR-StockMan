@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Supply } from '../../../../shared/model/supply.model';
 import { MatTableDataSource, MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-order-requests',
   templateUrl: './order-requests.component.html',
-  styleUrls: ['./order-requests.component.css']
+  styleUrls: ['./order-requests.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderRequestsComponent implements OnInit {
   public orderRequestColumns = ['deliveryDate', 'quantity']; // add status
@@ -17,7 +18,7 @@ export class OrderRequestsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.orderRequestSource = new MatTableDataSource(this.supply.orderRequestList);
+    this.orderRequestSource = new MatTableDataSource(this.supply.requestList);
     this.orderRequestSource.sort = this.sort;
   }
 

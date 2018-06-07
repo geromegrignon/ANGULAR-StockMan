@@ -3,8 +3,8 @@ import { AddressInfo } from '../../model/addressInfo.model';
 
 describe('ProviderActions', () => {
 
-    describe('FetchProvidersSuccess', () => {
-        it('should create a FetchProvidersSuccess actions', () => {
+    describe('FetchProviderListSuccess', () => {
+        it('should create a FetchProviderListSuccess actions', () => {
             const payload = [{
                 id: 1,
                 siret: 793773103827162,
@@ -22,21 +22,21 @@ describe('ProviderActions', () => {
                 contactList: []
             }
         ];
-            const action = new ProviderActions.FetchProvidersSuccess(payload);
+            const action = new ProviderActions.FetchProviderListSuccess(payload);
             expect({...action}).toEqual({
-                type: ProviderActions.FETCH_PROVIDERS_SUCCESS,
+                type: ProviderActions.FETCH_PROVIDER_LIST_SUCCESS,
                 payload
             });
         });
     });
-    describe('FetchProvidersError', () => {
-        it('should create a FetchProvidersError', () => {
+    describe('FetchProviderListError', () => {
+        it('should create a FetchProviderListError', () => {
             const payload = {
                 error: 'error'
             };
-            const action = new ProviderActions.FetchProvidersError(payload);
+            const action = new ProviderActions.FetchProviderListError(payload);
             expect({...action}).toEqual({
-                type: ProviderActions.FETCH_PROVIDERS_ERROR,
+                type: ProviderActions.FETCH_PROVIDER_LIST_ERROR,
                 payload
             });
         });
@@ -80,8 +80,8 @@ describe('ProviderActions', () => {
             });
         });
     });
-    describe('FetchProvidersNotEmptySuccess', () => {
-        it('should create a FetchProvidersNotEmpty action', () => {
+    describe('FetchProviderListNotEmptySuccess', () => {
+        it('should create a FetchProviderListNotEmpty action', () => {
             const payload = [{
                 id: 1,
                 siret: 793773103827162,
@@ -99,21 +99,21 @@ describe('ProviderActions', () => {
                 contactList: []
             }
         ];
-        const action = new ProviderActions.FetchProvidersNotEmptySuccess(payload);
+        const action = new ProviderActions.FetchProviderListNotEmptySuccess(payload);
         expect({...action}).toEqual({
-            type: ProviderActions.FETCH_PROVIDERS_NOT_EMPTY_SUCCESS,
+            type: ProviderActions.FETCH_PROVIDER_LIST_NOT_EMPTY_SUCCESS,
             payload
         });
         });
     });
-    describe('FetchProvidersNotEmptyError', () => {
-        it('should create a FetchProvidersNotEmpty action', () => {
+    describe('FetchProviderListNotEmptyError', () => {
+        it('should create a FetchProviderListNotEmpty action', () => {
             const payload = {
                 error: 'error'
             };
-            const action = new ProviderActions.FetchProvidersNotEmptyError(payload);
+            const action = new ProviderActions.FetchProviderListNotEmptyError(payload);
             expect({...action}).toEqual({
-                type: ProviderActions.FETCH_PROVIDERS_NOT_EMPTY_ERROR,
+                type: ProviderActions.FETCH_PROVIDER_LIST_NOT_EMPTY_ERROR,
                 payload
             });
         });
@@ -160,6 +160,22 @@ describe('ProviderActions', () => {
             const action = new ProviderActions.UpdateProviderError(payload);
             expect({...action}).toEqual({
                 type: ProviderActions.UPDATE_PROVIDER_ERROR,
+                payload
+            });
+        });
+    });
+    describe('TryCreateProvider', () => {
+        it('should create a TryCreateProvider action', () => {
+            const payload = {
+                siret: 793773103827162,
+                name: 'Lyreco',
+                addressInfo: {} as AddressInfo,
+                supplyList: [],
+                contactList: []
+            };
+            const action = new ProviderActions.TryCreateProvider(payload);
+            expect({...action}).toEqual({
+                type: ProviderActions.TRY_CREATE_PROVIDER,
                 payload
             });
         });

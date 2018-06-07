@@ -1,13 +1,13 @@
-<div *ngIf="supply$ | async; let supply">
-<mat-toolbar fxLayoutAlign='space-between center' color="accent">
-  <button mat-raised-button fxHide.xs (click)="backToList()" >
+<div *ngIf="(supply$ | async) as supply">
+<mat-toolbar fxLayoutAlign='space-between center'>
+  <button mat-raised-button fxHide.xs (click)="backToList()" color="accent">
     <mat-icon>keyboard_backspace</mat-icon>
     retour à la liste
   </button>
   <h2 *ngIf="readonly">{{supply?.name}}</h2>
-  <button mat-raised-button (click)="editMode()" *ngIf="readonly">Modifier</button>
-  <button mat-raised-button (click)="save()" *ngIf="!readonly" [disabled]="supplyForm.pristine" form="ngForm">Sauvegarder</button>
-  <button mat-raised-button (click)="cancel()" *ngIf="!readonly">Annuler</button>
+  <button mat-raised-button (click)="editMode()" *ngIf="readonly" color="accent">Modifier</button>
+  <button mat-raised-button (click)="save()" *ngIf="!readonly" [disabled]="supplyForm.pristine" form="ngForm" color="accent">Sauvegarder</button>
+  <button mat-raised-button (click)="cancel()" *ngIf="!readonly" color="accent">Annuler</button>
 </mat-toolbar>
 <div fxLayout="row" fxLayout.xs="column">
 <mat-card fxFlex="50%">
@@ -34,7 +34,7 @@
     </div>
     -->
   </form>
-  <form [formGroup]="orderForm" fxLayoutGap="20px" (ngSubmit)="addToOrder()">
+  <form [formGroup]="requestForm" fxLayoutGap="20px" (ngSubmit)="createRequest()">
     <mat-form-field>
       <input matInput type="text" placeholder="Quantité" formControlName="quantity">
     </mat-form-field>
@@ -43,14 +43,14 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button mat-raised-button color="accent" (click)="createRequest()" ><mat-icon>list_alt</mat-icon>Ajouter au panier</button>
+    <button mat-raised-button color="accent" [disabled]="requestForm.invalid"><mat-icon>list_alt</mat-icon>Commander</button>
   </form>
 </mat-card>
 <mat-card fxFlex="50%">
-  <div *ngIf=displayActiveOrderRequests(supply)>
+  <div *ngIf=hasRequests(supply)>
 <app-order-requests [supply]="supply"></app-order-requests>
 </div>
-<div *ngIf=!displayActiveOrderRequests(supply)>
+<div *ngIf=!hasRequests(supply)>
     <p>Pas de demandes actives</p>
 </div>
 </mat-card>

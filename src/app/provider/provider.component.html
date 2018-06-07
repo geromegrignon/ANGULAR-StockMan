@@ -1,8 +1,11 @@
-<section fxLayout="row" fxLayout.xs="column">
+<section fxLayout="row" fxLayout.xs="column" *ngIf="(providerList$ | async) as providerList; else loading">
   <mat-card fxFlex= "40%">
-    <app-provider-list></app-provider-list>
+    <app-provider-list [providerList]="providerList"></app-provider-list>
   </mat-card>
   <div fxFlex= "60%">
     <router-outlet></router-outlet>
   </div>
 </section>
+<ng-template #loading>
+  Loading stuff..
+</ng-template>

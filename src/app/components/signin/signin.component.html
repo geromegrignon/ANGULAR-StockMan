@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="center" class="my-5 py-5">
   <mat-card>
-    <img mat-card-image src="../../../assets/images/avatar.png" alt="avatar" aria-hidden="true">
+    <img mat-card-image src="../../../assets/images/avatar.png" alt="avatar" aria-hidden="true" fxHide.xs>
     <mat-card-content>
       <form fxLayout="column" fxLayoutGap="15px" [formGroup]="form">
         <mat-form-field>
@@ -11,8 +11,6 @@
           <input matInput type="text" placeholder="Mot de passe" formControlName="password">
           <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
-        <div *ngIf="error$ | async; let error"></div>
-        <a href="" fxLayoutAlign="end">mot de passe oublié?</a>
         <button mat-raised-button color="accent" (click)="submit()" [disabled]="form.invalid">Connexion</button>
       </form>
     </mat-card-content>

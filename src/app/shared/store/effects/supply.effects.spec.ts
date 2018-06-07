@@ -23,7 +23,7 @@ describe('SupplyEffects', () => {
             unitsInStock: 32,
             alertStock: 2,
             provider: {} as Provider,
-            orderRequestList: []
+            requestList: []
         },
         {
             id: 1,
@@ -33,7 +33,7 @@ describe('SupplyEffects', () => {
             unitsInStock: 32,
             alertStock: 2,
             provider: {} as Provider,
-            orderRequestList: []
+            requestList: []
         },
     ];
 
@@ -46,7 +46,7 @@ describe('SupplyEffects', () => {
             unitsInStock: 32,
             alertStock: 2,
             provider: {} as Provider,
-            orderRequestList: []
+            requestList: []
         },
         {
             id: 1,
@@ -56,7 +56,7 @@ describe('SupplyEffects', () => {
             unitsInStock: 32,
             alertStock: 2,
             provider: {} as Provider,
-            orderRequestList: []
+            requestList: []
         },
     ];
 
@@ -68,7 +68,7 @@ describe('SupplyEffects', () => {
             unitsInStock: 32,
             alertStock: 2,
             provider: {} as Provider,
-            orderRequestList: []
+            requestList: []
         };
         const payload = {
             id: 1,
@@ -78,7 +78,7 @@ describe('SupplyEffects', () => {
             unitsInStock: 32,
             alertStock: 2,
             provider: {} as Provider,
-            orderRequestList: []
+            requestList: []
         };
 
     beforeEach(() => {

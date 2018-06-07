@@ -1,0 +1,31 @@
+<form [formGroup]="providerForm" [connectForm]="provider$ | async">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="15px">
+      <mat-form-field fxFlex="50%">
+        <input matInput type="text" formControlName="name" placeholder="Nom" [readonly]="(readonly$ | async)">
+      </mat-form-field>
+      <mat-form-field fxFlex="50%">
+        <input matInput type="text" formControlName="siret" placeholder="N° siret" [readonly]="(readonly$ | async)">
+      </mat-form-field> 
+    </div>
+    <div formGroupName="addressInfo">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="15px">
+        <mat-form-field fxFlex="25%">
+          <input matInput type="text" formControlName="streetNumber" placeholder="N° de rue" [readonly]="(readonly$ | async)">
+        </mat-form-field>
+        <mat-form-field fxFlex="75%">
+          <input matInput type="text" formControlName="streetName" placeholder="intitulé de la voie" [readonly]="(readonly$ | async)">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="15px">
+        <mat-form-field fxFlex="25%">
+          <input matInput type="text" formControlName="postalCode" placeholder="code postal" [readonly]="(readonly$ | async)">
+        </mat-form-field>
+        <mat-form-field fxFlex="75%">
+          <input matInput type="text" formControlName="city" placeholder="Ville" [readonly]="(readonly$ | async)">
+        </mat-form-field>
+      </div>
+  <mat-form-field>
+    <input matInput type="text" formControlName="country" placeholder="Pays" [readonly]="(readonly$ | async)">
+  </mat-form-field>
+  </div>
+  </form>

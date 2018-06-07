@@ -8,5 +8,4 @@ export interface AddressInfo extends Audit {
     postalCode: number;
     city: string;
     country: string;
-    provider: Provider;
 }

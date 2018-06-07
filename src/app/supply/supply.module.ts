@@ -5,15 +5,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SUPPLY_ROUTES } from './supply.routing';
 
-// NGRX
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { supplyReducer } from '../shared/store/reducers/supply.reducer';
-import { SupplyEffects } from '../shared/store/effects/supply.effects';
-
-// Directives
-import { ConnectformDirective } from '../shared/directives/connectform.directive';
-
 // Components
 import { SupplyComponent } from './supply.component';
 import { SupplyListComponent } from './components/supply-list/supply-list.component';
@@ -23,9 +14,11 @@ import { AlertDialogComponent } from './components/supply-details/alert-dialog/a
 
 // Modules
 import { LayoutModule } from '../shared/modules/layout.module';
+import { MatSnackBar } from '@angular/material';
 
 // Resolver
-import { ProviderResolver } from '../shared/resolvers/provider.resolver';
+
+import { ProviderListNotEmptyResolver } from '../shared/resolvers/providerListNotEmpty.resolver';
 
 
 @NgModule({
@@ -37,11 +30,15 @@ import { ProviderResolver } from '../shared/resolvers/provider.resolver';
     SupplyComponent,
     SupplyListComponent,
     SupplyDetailsComponent,
-    ConnectformDirective,
     OrderRequestsComponent,
     AlertDialogComponent
   ],
-  entryComponents: [AlertDialogComponent],
-  providers: [ProviderResolver]
+  entryComponents: [
+    AlertDialogComponent
+  ],
+  providers: [
+    MatSnackBar,
+    ProviderListNotEmptyResolver
+  ]
 })
 export class SupplyModule { }

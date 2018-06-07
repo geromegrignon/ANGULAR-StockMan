@@ -1,10 +1,6 @@
-<section *ngIf='providerSource'>
   <mat-toolbar fxLayoutAlign='space-between center'>
-    <span fxHide.xs>
-    <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="filtre" >
-      </mat-form-field>
-     </span> 
+    Liste des fournisseurs
+    <button mat-icon-button color="accent" routerLink="new"><mat-icon>add_circle</mat-icon></button>
   </mat-toolbar>
     <mat-table [dataSource]="providerSource" matSort>
       <ng-container matColumnDef="name">
@@ -12,12 +8,11 @@
         <mat-cell *matCellDef="let row">{{row.name}}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="siret">
-        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs>n° Siret</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs>N° Siret</mat-header-cell>
         <mat-cell *matCellDef="let row" fxHide.xs>{{row.siret}}</mat-cell>
         </ng-container>
       <!-- Définition des colonnes -->
       <mat-header-row *matHeaderRowDef="providerColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: providerColumns" routerLink="{{row.id}}"></mat-row>
     </mat-table>
-  </section>
   

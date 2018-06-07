@@ -1,21 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Supply } from '../../../shared/model/supply.model';
 import { Store, select } from '@ngrx/store';
 import { State } from '../../../shared/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { FormGroup, FormBuilder, FormControl, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Provider } from '../../../shared/model/provider.model';
-import { TryFetchProviders } from '../../../shared/store/actions/provider.actions';
 import { errorProviderSelector, providerListSelector } from '../../../shared/store/selectors/provider.selectors';
 import { ProviderService } from '../../../shared/services/provider.service';
 import { selectedSupply, errorSupplySelector } from '../../../shared/store/selectors/supply.selectors';
 import { TryFetchSelectedSupply, TryUpdateSupply } from '../../../shared/store/actions/supply.actions';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { SupplyService } from '../../../shared/services/supply.service';
 import { TryCreateRequest } from '../../../shared/store/actions/request.actions';
 import { OrderRequestsComponent } from './order-requests/order-requests.component';
+import { UserService } from '../../../shared/services/user.service';
+import { User } from '../../../shared/model/user.model';
 
 
 @Component({
@@ -23,14 +24,15 @@ import { OrderRequestsComponent } from './order-requests/order-requests.componen
   templateUrl: './supply-details.component.html',
   styleUrls: ['./supply-details.component.css']
 })
-export class SupplyDetailsComponent implements OnInit {
+export class SupplyDetailsComponent implements OnInit, OnChanges {
   public id: number;
   public supply$: Observable<Supply> = this.store.pipe(select(selectedSupply));
   public errorSupply$: Observable<string> = this.store.pipe(select(errorSupplySelector));
   public readonly: boolean = true;
   public supplyForm: FormGroup;
-  public orderForm: FormGroup;
+  public requestForm: FormGroup;
   public supply: Supply;
+  public user: User;
 
   constructor(
     private store: Store<State>,
@@ -38,20 +40,27 @@ export class SupplyDetailsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
     private service: SupplyService,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
-     this.id = +this.route.snapshot.paramMap.get('id');
+    this.id = +this.route.snapshot.paramMap.get('id');
     this.store.dispatch(new TryFetchSelectedSupply(this.id));
 
     this.initForm();
     this.service.getSupply(this.id).subscribe(
       data => {
-        this.supply = data,
-      this.alertDialog(); }
+        this.supply = data;
+        this.alertDialog();
+       }
     );
+    this.userService.getUserById(1).subscribe( data => this.user = data);
+  }
 
+  ngOnChanges() {
+    this.store.dispatch(new TryFetchSelectedSupply(this.id));
   }
 
   initForm(): void {
@@ -62,9 +71,9 @@ export class SupplyDetailsComponent implements OnInit {
       unitsInStock: ['', Validators.required],
       alertStock: ['', Validators.required]
     });
-    this.orderForm = this.formBuilder.group({
-      quantity: ['', Validators.required],
-      deliveryDate: ['', Validators.required]
+    this.requestForm = this.formBuilder.group({
+      quantity: ['', [Validators.required]],
+      deliveryDate: ['', [Validators.required]]
     });
   }
 
@@ -81,7 +90,7 @@ export class SupplyDetailsComponent implements OnInit {
     this.store.dispatch(new TryUpdateSupply(
       {
       ...this.supplyForm.value,
-      orderRequestList: null
+      requestList: null
       }
     ));
     this.readonly = true;
@@ -91,12 +100,8 @@ export class SupplyDetailsComponent implements OnInit {
     this.router.navigate(['/supply']);
   }
 
-  addToOrder(): void {
-    // to complete
-  }
-
-  displayActiveOrderRequests(supply: Supply) {
-    if (supply.orderRequestList && supply.orderRequestList.length) {
+  hasRequests(supply: Supply): boolean {
+    if (supply.requestList && supply.requestList.length) {
       return true;
     } else {
       return false;
@@ -104,25 +109,40 @@ export class SupplyDetailsComponent implements OnInit {
   }
 
   alertDialog(): void {
-    if (!this.supply.orderRequestList.length && (this.supply.unitsInStock < this.supply.alertStock)) {
+    if (!this.supply.requestList.length && (this.supply.unitsInStock < this.supply.alertStock)) {
       this.dialog.open(AlertDialogComponent, {
         data: this.supply
       });
      }
   }
 
-  createRequest() {
+  createRequest(): void {
     this.store.dispatch(new TryCreateRequest(
       {
-        quantity: this.orderForm.value.quantity,
-        deliveryDate: this.orderForm.value.deliveryDate,
-        status: null,
-        supply: null,
-        user: null
+        quantity: this.requestForm.value.quantity,
+        deliveryDate: this.requestForm.value.deliveryDate,
+        activeStatus: 'en attente de validation',
+        statusList: [{
+          name: 'en attente de validation',
+          comment: '',
+          user : this.user
+        }],
+        supply: this.supply,
+        user: this.user
       }
     ));
+    this.snackBar.open('Requête créée', '', {
+      duration: 2000,
+      verticalPosition: 'top'
+    });
+    this.rebuildRequestForm();
   }
 
-
-
+  rebuildRequestForm() {
+    this.requestForm.reset({
+      quantity: '',
+      deliveryDate: ''
+    });
+    this.requestForm.markAsPristine();
+  }
 }

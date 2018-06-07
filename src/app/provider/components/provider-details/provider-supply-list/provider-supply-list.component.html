@@ -1,6 +1,6 @@
 <section *ngIf='supplySource'>
   <mat-toolbar fxLayoutAlign='space-between center'>
-    Fournitures associées
+    Articles
     <span fxHide.xs>
     <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="filtre" >
@@ -24,4 +24,10 @@
     <mat-header-row *matHeaderRowDef="supplyColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: supplyColumns" routerLink="{{row.id}}"></mat-row>
   </mat-table>
+  <mat-paginator #paginator
+                 [pageSize]=5
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons]="true"
+                 fxShow.xs>
+  </mat-paginator>
   </section>

@@ -3,13 +3,13 @@ import { Store } from '@ngrx/store';
 import { State } from '../../../shared/store';
 import { Injectable } from '@angular/core';
 import {
-    TryFetchProviders,
-    TRY_FETCH_PROVIDERS,
-    FetchProvidersSuccess,
-    FetchProvidersError,
-    TryFetchProvidersNotEmpty,
-    TRY_FETCH_PROVIDERS_NOT_EMPTY,
-    FetchProvidersNotEmptySuccess,
+    TryFetchProviderList,
+    TRY_FETCH_PROVIDER_LIST,
+    FetchProviderListSuccess,
+    FetchProviderListError,
+    TryFetchProviderListNotEmpty,
+    TRY_FETCH_PROVIDER_LIST_NOT_EMPTY,
+    FetchProviderListNotEmptySuccess,
     TryFetchProviderById,
     TRY_FETCH_PROVIDER_BY_ID,
     FetchProviderByIdSuccess,
@@ -18,7 +18,11 @@ import {
     UpdateProviderSuccess,
     UpdateProviderError,
     FetchProviderByIdError,
-    FetchProvidersNotEmptyError
+    FetchProviderListNotEmptyError,
+    TryCreateProvider,
+    TRY_CREATE_PROVIDER,
+    CreateProviderSuccess,
+    CreateProviderError
 } from '../actions/provider.actions';
 import { switchMap, catchError, map, filter } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -34,11 +38,20 @@ export class ProviderEffects {
     ) {}
 
     @Effect()
-    fetchProviders$ = this.actions$.pipe(
-        ofType<TryFetchProviders>(TRY_FETCH_PROVIDERS),
+    fetchProviderList$ = this.actions$.pipe(
+        ofType<TryFetchProviderList>(TRY_FETCH_PROVIDER_LIST),
         switchMap( () => this.providerService.getAllProviders().pipe(
-            map((providers: Provider[]) => new FetchProvidersSuccess(providers)),
-            catchError(error => of(new FetchProvidersError(error)))
+            map((providers: Provider[]) => new FetchProviderListSuccess(providers)),
+            catchError(error => of(new FetchProviderListError(error)))
+        ))
+    );
+
+    @Effect()
+    fetchProviderListNotEmpty$ = this.actions$.pipe(
+        ofType<TryFetchProviderListNotEmpty>(TRY_FETCH_PROVIDER_LIST_NOT_EMPTY),
+        switchMap( () => this.providerService.getAllProvidersNotEmpty().pipe(
+            map((providers: Provider[]) => new FetchProviderListNotEmptySuccess(providers)),
+            catchError(error => of(new FetchProviderListNotEmptyError(error)))
         ))
     );
 
@@ -53,15 +66,6 @@ export class ProviderEffects {
     );
 
     @Effect()
-    fetchProvidersNotEmpty$ = this.actions$.pipe(
-        ofType<TryFetchProvidersNotEmpty>(TRY_FETCH_PROVIDERS_NOT_EMPTY),
-        switchMap( () => this.providerService.getAllProvidersNotEmpty().pipe(
-            map((providers: Provider[]) => new FetchProvidersNotEmptySuccess(providers)),
-            catchError(error => of(new FetchProvidersNotEmptyError(error)))
-        ))
-    );
-
-    @Effect()
     updateProvider$ = this.actions$.pipe(
         ofType<TryUpdateProvider>(TRY_UPDATE_PROVIDER),
         map((action: TryUpdateProvider) => action.payload),
@@ -69,5 +73,15 @@ export class ProviderEffects {
             map((updatedProvider: Provider) => new UpdateProviderSuccess(updatedProvider)),
         catchError(error => of(new UpdateProviderError(error)))
         )),
+    );
+
+    @Effect()
+    createProvider$ = this.actions$.pipe(
+        ofType<TryCreateProvider>(TRY_CREATE_PROVIDER),
+        map((action: TryCreateProvider) => action.payload),
+        switchMap((provider: Provider) => this.providerService.createProvider(provider).pipe(
+            map((newProvider: Provider) => new CreateProviderSuccess(newProvider)),
+            catchError(error => of(new CreateProviderError(error)))
+        ))
     );
 }

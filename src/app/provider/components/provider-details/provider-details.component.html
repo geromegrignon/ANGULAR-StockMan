@@ -1,42 +1,14 @@
+<div *ngIf="(provider$ | async) as provider">
 <mat-card>
 <mat-toolbar fxLayoutAlign="space-between center">
   Détails
-  <button mat-raised-button (click)="editMode()" *ngIf="readonly">Modifier</button>
-  <button mat-raised-button (click)="save()" *ngIf="!readonly" [disabled]="form.pristine" form="ngForm">Sauvegarder</button>
-  <button mat-raised-button (click)="cancel()" *ngIf="!readonly">Annuler</button>
+  <button mat-raised-button (click)="editMode()" *ngIf="(readonly$ | async)">Modifier</button>
+  <!-- <button mat-raised-button (click)="save()" *ngIf="!readonly" [disabled]="providerForm.pristine">Sauvegarder</button> -->
+  <button mat-raised-button (click)="cancel()" *ngIf="!(readonly$ | async)">Annuler</button>
 </mat-toolbar>
-<form [formGroup]="form" #ngForm>
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="15px">
-    <mat-form-field fxFlex="50%">
-      <input matInput type="text" formControlName="name" placeholder="Nom" [readonly]="readonly">
-    </mat-form-field>
-    <mat-form-field fxFlex="50%">
-      <input matInput type="text" formControlName="siret" placeholder="N° siret" [readonly]="readonly">
-    </mat-form-field>
-  </div>
-  <div formGroupName="addressInfo">
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="15px">
-      <mat-form-field fxFlex="25%">
-        <input matInput type="text" formControlName="streetNumber" placeholder="N° de rue" [readonly]="readonly">
-      </mat-form-field>
-      <mat-form-field fxFlex="75%">
-        <input matInput type="text" formControlName="streetName" placeholder="nom de la rue" [readonly]="readonly">
-      </mat-form-field>
-    </div>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="15px">
-      <mat-form-field fxFlex="25%">
-        <input matInput type="text" formControlName="postalCode" placeholder="code postal" [readonly]="readonly">
-      </mat-form-field>
-      <mat-form-field fxFlex="75%">
-        <input matInput type="text" formControlName="city" placeholder="Ville" [readonly]="readonly">
-      </mat-form-field>
-    </div>
-<mat-form-field>
-  <input matInput type="text" formControlName="country" placeholder="Pays" [readonly]="readonly">
-</mat-form-field>
-</div>
-</form>
+<app-provider-form [provider]="provider"></app-provider-form>
 </mat-card>
 <mat-card>
   <app-provider-supply-list [provider]="provider"></app-provider-supply-list>
 </mat-card>
+</div>

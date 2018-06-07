@@ -1,97 +1,29 @@
 import * as RequestSelectors from './request.selectors';
-import { OrderRequest } from '../../model/orderRequest.model';
+import { Request } from '../../model/request.model';
 import { User } from '../../model/user.model';
 import { Supply } from '../../model/supply.model';
+import * as Mock from '../../mocks/request.mock.spec';
 
 describe('RequestSelectors', () => {
 
     describe('RequestListSelector', () => {
         it('should return RequestListSelector', () => {
-            const mockState = {
-                request: {
-                    requestList:  [
-                        {
-                            id: 1,
-                            quantity: 23,
-                            deliveryDate: {} as Date,
-                            status: [],
-                            user: {} as User,
-                            supply: {} as Supply
-                        },
-                        {
-                            id: 1,
-                            quantity: 23,
-                            deliveryDate: {} as Date,
-                            status: [],
-                            user: {} as User,
-                            supply: {} as Supply
-                        },
-                    ],
-                    request: {} as OrderRequest,
-                    newRequest:  {} as OrderRequest,
-                    error: null
-                }
-            };
-            const payload = [
-                {
-                    id: 1,
-                    quantity: 23,
-                    deliveryDate: {} as Date,
-                    status: [],
-                    user: {} as User,
-                    supply: {} as Supply
-                },
-                {
-                    id: 1,
-                    quantity: 23,
-                    deliveryDate: {} as Date,
-                    status: [],
-                    user: {} as User,
-                    supply: {} as Supply
-                },
-            ];
-            expect(RequestSelectors.RequestListSelector(mockState)).toEqual(payload);
+            expect(RequestSelectors.RequestListSelector(Mock.REQUEST_STATE)).toEqual(Mock.REQUEST_LIST_EXIT);
         });
     });
     describe('errorRequestSelector', () => {
         it('should return errorRequestSelector', () => {
-            const mockState = {
-                request: {
-                    requestList: null,
-                    request: {} as OrderRequest,
-                    newRequest:  {} as OrderRequest,
-                    error: 'error'
-                }
-            };
-            expect(RequestSelectors.errorRequestSelector(mockState)).toEqual('error');
+            expect(RequestSelectors.errorRequestSelector(Mock.REQUEST_STATE)).toEqual('error');
         });
     });
     describe('newRequestSelector', () => {
         it('should return newRequestSelector', () => {
-            const mockState = {
-                request: {
-                    requestList: [],
-                    request: {} as OrderRequest,
-                    newRequest:  {
-                        id: 1,
-                        quantity: 23,
-                        deliveryDate: {} as Date,
-                        status: [],
-                        user: {} as User,
-                        supply: {} as Supply
-                    },
-                    error: null
-                }
-            };
-            const payload = {
-                    id: 1,
-                    quantity: 23,
-                    deliveryDate: {} as Date,
-                    status: [],
-                    user: {} as User,
-                    supply: {} as Supply
-            };
-            expect(RequestSelectors.newRequestSelector(mockState)).toEqual(payload);
+            expect(RequestSelectors.newRequestSelector(Mock.REQUEST_STATE)).toEqual(Mock.SINGLE_REQUEST_EXIT);
+        });
+    });
+    describe('singleRequestSelector', () => {
+        it('should return singleRequestSelector', () => {
+            expect(RequestSelectors.singleRequestSelector(Mock.REQUEST_STATE)).toEqual(Mock.SINGLE_REQUEST_EXIT);
         });
     });
 });

@@ -17,7 +17,7 @@ describe('SupplySelectors', () => {
                             unitsInStock: 32,
                             alertStock: 2,
                             provider: {} as Provider,
-                            orderRequestList: []
+                            requestList: []
                         },
                         {
                             id: 1,
@@ -27,7 +27,7 @@ describe('SupplySelectors', () => {
                             unitsInStock: 32,
                             alertStock: 2,
                             provider: {} as Provider,
-                            orderRequestList: []
+                            requestList: []
                         },
                     ],
                     alertSupplies: [],
@@ -44,7 +44,7 @@ describe('SupplySelectors', () => {
                     unitsInStock: 32,
                     alertStock: 2,
                     provider: {} as Provider,
-                    orderRequestList: []
+                    requestList: []
                 },
                 {
                     id: 1,
@@ -54,7 +54,7 @@ describe('SupplySelectors', () => {
                     unitsInStock: 32,
                     alertStock: 2,
                     provider: {} as Provider,
-                    orderRequestList: []
+                    requestList: []
                 },
             ];
             expect(SupplySelectors.suppliesSelector(mockState)).toEqual(payload);
@@ -74,7 +74,7 @@ describe('SupplySelectors', () => {
                             unitsInStock: 32,
                             alertStock: 2,
                             provider: {} as Provider,
-                            orderRequestList: []
+                            requestList: []
                         },
                         {
                             id: 1,
@@ -84,7 +84,7 @@ describe('SupplySelectors', () => {
                             unitsInStock: 32,
                             alertStock: 2,
                             provider: {} as Provider,
-                            orderRequestList: []
+                            requestList: []
                         },
                     ],
                     supply: {} as Supply,
@@ -100,7 +100,7 @@ describe('SupplySelectors', () => {
                     unitsInStock: 32,
                     alertStock: 2,
                     provider: {} as Provider,
-                    orderRequestList: []
+                    requestList: []
                 },
                 {
                     id: 1,
@@ -110,7 +110,7 @@ describe('SupplySelectors', () => {
                     unitsInStock: 32,
                     alertStock: 2,
                     provider: {} as Provider,
-                    orderRequestList: []
+                    requestList: []
                 },
             ];
             expect(SupplySelectors.alertSuppliesSelector(mockState)).toEqual(payload);
@@ -143,7 +143,7 @@ describe('SupplySelectors', () => {
                         unitsInStock: 32,
                         alertStock: 2,
                         provider: {} as Provider,
-                        orderRequestList: []
+                        requestList: []
                     },
                     error: null
                 }
@@ -156,7 +156,7 @@ describe('SupplySelectors', () => {
                     unitsInStock: 32,
                     alertStock: 2,
                     provider: {} as Provider,
-                    orderRequestList: []
+                    requestList: []
                 };
             expect(SupplySelectors.selectedSupply(mockState)).toEqual(payload);
         });

@@ -44,7 +44,7 @@ describe('SupplyReducer', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             },
             {
                 id: 1,
@@ -54,7 +54,7 @@ describe('SupplyReducer', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             },
         ];
         const payload = [
@@ -66,7 +66,7 @@ describe('SupplyReducer', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             },
             {
                 id: 1,
@@ -76,7 +76,7 @@ describe('SupplyReducer', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             },
         ];
         const action = new SupplyActions.FetchSuppliesSuccess(mockList);
@@ -95,7 +95,7 @@ describe('SupplyReducer', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             },
             {
                 id: 1,
@@ -105,7 +105,7 @@ describe('SupplyReducer', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             },
         ];
         const payload = [
@@ -117,7 +117,7 @@ describe('SupplyReducer', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             },
             {
                 id: 1,
@@ -127,7 +127,7 @@ describe('SupplyReducer', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             },
         ];
         const action = new SupplyActions.FetchAlertSuppliesSuccess(mockList);
@@ -145,7 +145,7 @@ describe('SupplyReducer', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             };
         const payload = {
                 id: 1,
@@ -155,7 +155,7 @@ describe('SupplyReducer', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             };
         const action = new SupplyActions.FetchSelectedSupplySuccess(mockList);
         const state = SupplyReducer.supplyReducer(initialSupplyState, action);
@@ -172,7 +172,7 @@ describe('SupplyReducer', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             };
         const payload = {
                 id: 1,
@@ -182,7 +182,7 @@ describe('SupplyReducer', () => {
                 unitsInStock: 32,
                 alertStock: 2,
                 provider: {} as Provider,
-                orderRequestList: []
+                requestList: []
             };
         const action = new SupplyActions.UpdateSupplySuccess(mockList);
         const state = SupplyReducer.supplyReducer(initialSupplyState, action);

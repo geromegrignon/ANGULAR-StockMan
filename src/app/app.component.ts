@@ -6,8 +6,7 @@ import { TryRefreshToken } from './shared/store/actions/auth.actions';
 
 @Component({
   selector: 'app-root',
-  template: '<app-topbar></app-topbar>',
-  styleUrls: ['./app.component.css']
+  template: '<app-topbar></app-topbar>'
 })
 export class AppComponent {
   title = 'app';

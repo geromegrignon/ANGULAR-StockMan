@@ -8,6 +8,7 @@ import { isLoggedIn } from '../../store/selectors/auth.selectors';
 import { Logout } from '../../store/actions/auth.actions';
 import { BreakpointState, BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { User } from '../../model/user.model';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-topbar',
@@ -16,8 +17,10 @@ import { User } from '../../model/user.model';
 })
 export class TopbarComponent implements OnInit {
   public isLoggedIn$: Observable<boolean> = this.store.pipe(select(isLoggedIn));
-  public isHandset: Observable<BreakpointState> = this.breakpointObserver.observe(Breakpoints.Handset);
-  user: User;
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches)
+    );
 
   constructor(
     private store: Store<State>,

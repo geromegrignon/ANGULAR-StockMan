@@ -1,10 +1,14 @@
-<section fxLayout="row" fxLayout.xs="column">
-<mat-card fxFlex="70%">
-    <mat-toolbar>Requêtes</mat-toolbar>
-  <!-- <app-ondemand-request-list></app-ondemand-request-list> -->
-</mat-card>
-<mat-card fxFlex="70%">
-  <mat-toolbar>Alertes</mat-toolbar>
-<app-alert-list></app-alert-list>
-</mat-card>
-</section>
+<mat-tab-group>
+  <mat-tab *ngIf="(requestList$ | async) as requestList">
+      <ng-template mat-tab-label>
+          <span [matBadge]="requestList.length" matBadgeOverlap="false" matBadgeColor="warn">Requêtes</span>
+        </ng-template>
+    <app-dashboard-requests [requestList]="requestList"></app-dashboard-requests>
+</mat-tab>
+<mat-tab *ngIf="(onAlertSupplyList$ | async) as onAlertSupplyList">
+<ng-template mat-tab-label>
+    <span [matBadge]="onAlertSupplyList.length" matBadgeOverlap="false" matBadgeColor="warn">Stocks à renouveler</span>
+  </ng-template>
+<app-dashboard-supply [onAlertSupplyList]="onAlertSupplyList"></app-dashboard-supply>
+</mat-tab>
+</mat-tab-group>
