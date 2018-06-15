@@ -1,19 +1,35 @@
-<h3 mat-dialog-title>{{data.quantity}}</h3>
-<mat-dialog-content fxLayout="row" fxLayoutGap="10px">
-  <div fxFlex="50%">
-    <p>{{data.quantity}}</p>
-    <p>{{data.deliveryDate | date:"dd/mm/yyyy"}}</p>
-  </div>
-  <mat-divider [vertical]="true"></mat-divider>
-  <div fxFlex="50%">
-    toto
-    <mat-list>
-      <mat-list-item *ngFor="let status of data.statusList">{{ status.name }}</mat-list-item>
-    </mat-list>
-  </div>
-</mat-dialog-content>
-<mat-dialog-actions fxLayoutAlign="space-around">
-  <button mat-raised-button>Valider</button>
-  <button mat-raised-button (click)="close()">Annuler</button>
-</mat-dialog-actions>
-<mat-dialog-actions></mat-dialog-actions>
+<div *ngIf="data">
+  <h3 mat-dialog-title class="alert alert-info">{{data.supply.name}}</h3>
+  <mat-dialog-content fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
+    <div fxFlex="30%">
+      <form [formGroup]="requestForm">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Quantité" formControlName="quantity" readonly>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Quantité" formControlName="deliveryDate" readonly>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Demandeur" formControlName="username" readonly>
+          </mat-form-field>
+      </form>
+    </div>
+    <mat-divider [vertical]="true"></mat-divider>
+    <div fxFlex="70%">
+      <mat-icon>schedule</mat-icon>
+      <hr>
+      <div class="list-group">
+        <div class="list-group-item" *ngFor="let status of data.statusList" fxLayoutAlign="space-between center">
+          {{status.name}}
+          <span class="username">{{status.user.username}}</span>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <hr>
+  <mat-dialog-actions fxLayoutAlign="space-around">
+      <button mat-raised-button (click)="updateStatus()">Valider</button>
+      <button mat-raised-button (click)="close()">Annuler</button>
+  </mat-dialog-actions>
+  <mat-dialog-actions></mat-dialog-actions>
+</div>

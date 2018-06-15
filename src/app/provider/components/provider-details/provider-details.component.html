@@ -3,7 +3,7 @@
 <mat-toolbar fxLayoutAlign="space-between center">
   Détails
   <button mat-raised-button (click)="editMode()" *ngIf="(readonly$ | async)">Modifier</button>
-  <!-- <button mat-raised-button (click)="save()" *ngIf="!readonly" [disabled]="providerForm.pristine">Sauvegarder</button> -->
+  <button mat-raised-button (click)="save()" *ngIf="!(readonly$ | async)">Sauvegarder</button>
   <button mat-raised-button (click)="cancel()" *ngIf="!(readonly$ | async)">Annuler</button>
 </mat-toolbar>
 <app-provider-form [provider]="provider"></app-provider-form>

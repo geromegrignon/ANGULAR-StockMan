@@ -1,7 +1,7 @@
 import { Audit } from './audit.model';
 import { Provider } from './provider.model';
 
-export interface AddressInfo extends Audit {
+export interface AddressInfo {
     id?: number;
     streetNumber: string;
     streetName: string;

@@ -4,7 +4,7 @@ import { Contact } from './contact.model';
 import { AddressInfo } from './addressInfo.model';
 
 
-export interface Provider extends Audit {
+export interface Provider {
     id?: number;
     siret: number;
     name: string;

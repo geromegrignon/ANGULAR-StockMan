@@ -4,6 +4,7 @@ import { ProviderState, providerReducer } from './reducers/provider.reducer';
 import { SupplyState, supplyReducer } from './reducers/supply.reducer';
 import { RequestState, requestReducer } from './reducers/request.reducer';
 import { FormState, formReducer } from './reducers/form.reducer';
+import { UserState, userReducer } from './reducers/user.reducer';
 
 export interface State {
     auth: AuthState;
@@ -11,6 +12,7 @@ export interface State {
     provider: ProviderState;
     request: RequestState;
     form: FormState;
+    user: UserState;
 }
 
 export const reducersMap: ActionReducerMap<State> = {
@@ -18,6 +20,7 @@ export const reducersMap: ActionReducerMap<State> = {
     supply: supplyReducer,
     provider: providerReducer,
     request: requestReducer,
-    form: formReducer
+    form: formReducer,
+    user: userReducer
 };
 

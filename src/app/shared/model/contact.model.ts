@@ -1,9 +1,11 @@
 import { Provider } from './provider.model';
-import { PersonalInfo } from './personalInfo.model';
 import { Audit } from './audit.model';
 
-export interface Contact extends Audit {
+export interface Contact {
     id?: number;
-    personalInfo: PersonalInfo;
+    email: string;
+    firstname: string;
+    lastname: string;
+    phoneNumber: string;
     employer?: Provider;
 }

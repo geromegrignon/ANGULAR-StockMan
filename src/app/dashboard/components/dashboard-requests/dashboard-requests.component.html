@@ -1,22 +1,25 @@
 <mat-table [dataSource]="requestSource" matSort>
-        <ng-container matColumnDef="supplyName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{row.supply.name}}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="quantity">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Quantité</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{row.quantity}}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="deliveryDate">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Date de livraison</mat-header-cell>
-            <mat-cell *matCellDef="let row">{{row.deliveryDate | date:'dd/mm/yyyy'}}</mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="userName">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Demandeur</mat-header-cell>
-              <mat-cell *matCellDef="let row">{{row.user.name}}</mat-cell>
-            </ng-container>
-        <!-- Définition des colonnes -->
-        <mat-header-row *matHeaderRowDef="requestColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: requestColumns" (click)="openDialog(row)"></mat-row>
-      </mat-table>
-    
+  <ng-container matColumnDef="supplyName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Nom</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.supply.name}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="quantity">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Quantité</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.quantity}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="deliveryDate">
+    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.xs>Date de livraison</mat-header-cell>
+    <mat-cell *matCellDef="let row" fxHide.xs>{{row.deliveryDate | date:'dd/mm/yyyy'}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="userName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Demandeur</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.user.name}}</mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="activeStatus">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Statut</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.activeStatus}}</mat-cell>
+  </ng-container>
+  <!-- Définition des colonnes -->
+  <mat-header-row *matHeaderRowDef="requestColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: requestColumns" (click)="openDialog(row)"></mat-row>
+</mat-table>

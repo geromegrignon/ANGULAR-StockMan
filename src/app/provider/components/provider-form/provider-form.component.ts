@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Provider } from '../../../shared/model/provider.model';
-import { TryUpdateProvider, TryCreateProvider } from '../../../shared/store/actions/provider.actions';
+import { TryUpdateProvider, TryCreateProvider, TryFetchProviderList } from '../../../shared/store/actions/provider.actions';
 import { State } from '../../../shared/store';
 import { Store, select } from '@ngrx/store';
 import { readonlySelector } from '../../../shared/store/selectors/form.selector';
@@ -52,6 +52,7 @@ export class ProviderFormComponent implements OnInit, OnChanges {
 
   initForm(provider: Provider = this.emptyProvider): void {
     this.providerForm = this.formBuilder.group({
+      id: [provider.id],
       name: [provider.name],
       siret: [provider.siret],
       addressInfo: this.formBuilder.group({
@@ -74,16 +75,26 @@ export class ProviderFormComponent implements OnInit, OnChanges {
   }
 
   save(): void {
-    this.store.dispatch(new TryUpdateProvider(
-      {
+    this.store.dispatch(new TryUpdateProvider({
       ...this.providerForm.value
-      }
-    ));
+    }));
     this.store.dispatch(new SetReadonlyMode());
   }
 
   create(): void {
-    this.store.dispatch(new TryCreateProvider(this.providerForm.value));
+    this.store.dispatch(new TryCreateProvider({
+      name: this.providerForm.value.name,
+      siret: this.providerForm.value.siret,
+      addressInfo: {
+        streetNumber: this.providerForm.value.addressInfo.streetNumber,
+        streetName: this.providerForm.value.addressInfo.streetName,
+        postalCode: this.providerForm.value.postalCode,
+        city: this.providerForm.value.city,
+        country: this.providerForm.value.country
+      },
+      supplyList: [],
+      contactList: []
+    }));
   }
 
   setMode() {

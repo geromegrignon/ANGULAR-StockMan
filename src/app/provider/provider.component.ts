@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Provider } from '@angular/compiler/src/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { State } from '../shared/store';
 import { providerListSelector } from '../shared/store/selectors/provider.selectors';
+import { TryFetchProviderList } from '../shared/store/actions/provider.actions';
 
 
 @Component({
@@ -18,5 +19,6 @@ export class ProviderComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 }

@@ -22,15 +22,13 @@ import { reducersMap } from './shared/store';
 import { AuthEffects } from './shared/store/effects/auth.effects';
 import { ProviderEffects } from './shared/store/effects/provider.effects';
 import { SupplyEffects } from './shared/store/effects/supply.effects';
-import { RequestComponent } from './request/request.component';
 import { RequestEffects } from './shared/store/effects/request.effects';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    RequestComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

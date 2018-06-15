@@ -25,7 +25,7 @@ export class ProviderListComponent implements OnInit, OnChanges {
 
   ngOnInit() {}
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     this.providerSource = new MatTableDataSource(this.providerList);
   }
 

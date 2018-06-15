@@ -8,10 +8,7 @@ export const ROUTES: Routes = [
   {path: '', redirectTo: 'signin', pathMatch: 'full'},
     {path: 'signup', component: SignupComponent},
     {path: 'signin', component: SigninComponent},
-    {path: 'profil', canActivate: [AuthGuard], loadChildren: './profil/profil.module#ProfilModule'},
     {path: 'supply',  canActivate: [AuthGuard], loadChildren: './supply/supply.module#SupplyModule'},
     {path: 'provider', canActivate: [AuthGuard], loadChildren: './provider/provider.module#ProviderModule'},
-    {path: 'dashboard', canActivate: [AuthGuard], loadChildren: './dashboard/dashboard.module#DashboardModule'},
-    {path: 'user', canActivate: [AuthGuard], loadChildren: './user/user.module#UserModule'}
-];
+    {path: 'dashboard', canActivate: [AuthGuard], loadChildren: './dashboard/dashboard.module#DashboardModule'}];
 

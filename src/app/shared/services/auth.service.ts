@@ -16,7 +16,7 @@ const HOST = 'http://localhost:8080/api';
   providedIn: 'root'
 })
 export class AuthService {
-  public currentUser: BehaviorSubject<User> = new BehaviorSubject(null);
+  // public currentUser: BehaviorSubject<User> = new BehaviorSubject(null);
   public jwtToken: BehaviorSubject<JwtToken> = new BehaviorSubject({
     isAuthenticated: null,
     token: null
@@ -74,6 +74,6 @@ export class AuthService {
   }
 
   public getCurrentUser(): Observable<User> {
-    return this.http.get<User>('/api/user/current');
+    return this.http.get<User>('http://localhost:8080/api/user/me');
 }
 }

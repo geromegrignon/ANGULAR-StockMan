@@ -22,7 +22,7 @@
     </ng-container>
     <!-- Définition des colonnes -->
     <mat-header-row *matHeaderRowDef="supplyColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: supplyColumns" routerLink="{{row.id}}"></mat-row>
+    <mat-row *matRowDef="let row; columns: supplyColumns" routerLink="/supply/{{row.id}}"></mat-row>
   </mat-table>
   <mat-paginator #paginator
                  [pageSize]=5

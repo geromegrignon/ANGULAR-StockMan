@@ -5,6 +5,7 @@ export const SINGLE_REQUEST_ENTRY = {
     id: 1,
     quantity: 23,
     deliveryDate: {} as Date,
+    activeStatus: 'validé',
     statusList: [],
     user: {} as User,
     supply: {} as Supply
@@ -14,6 +15,7 @@ export const SINGLE_REQUEST_EXIT = {
     id: 1,
     quantity: 23,
     deliveryDate: {} as Date,
+    activeStatus: 'validé',
     statusList: [],
     user: {} as User,
     supply: {} as Supply
@@ -24,6 +26,7 @@ export const REQUEST_LIST_ENTRY = [
         id: 1,
         quantity: 23,
         deliveryDate: {} as Date,
+        activeStatus: 'validé',
         statusList: [],
         user: {} as User,
         supply: {} as Supply
@@ -32,6 +35,7 @@ export const REQUEST_LIST_ENTRY = [
         id: 1,
         quantity: 23,
         deliveryDate: {} as Date,
+        activeStatus: 'validé',
         statusList: [],
         user: {} as User,
         supply: {} as Supply
@@ -43,6 +47,7 @@ export const REQUEST_LIST_EXIT = [
         id: 1,
         quantity: 23,
         deliveryDate: {} as Date,
+        activeStatus: 'validé',
         statusList: [],
         user: {} as User,
         supply: {} as Supply
@@ -51,6 +56,7 @@ export const REQUEST_LIST_EXIT = [
         id: 1,
         quantity: 23,
         deliveryDate: {} as Date,
+        activeStatus: 'validé',
         statusList: [],
         user: {} as User,
         supply: {} as Supply
@@ -64,6 +70,7 @@ export const REQUEST_STATE = {
                 id: 1,
                 quantity: 23,
                 deliveryDate: {} as Date,
+                activeStatus: 'validé',
                 statusList: [],
                 user: {} as User,
                 supply: {} as Supply
@@ -72,6 +79,7 @@ export const REQUEST_STATE = {
                 id: 1,
                 quantity: 23,
                 deliveryDate: {} as Date,
+                activeStatus: 'validé',
                 statusList: [],
                 user: {} as User,
                 supply: {} as Supply
@@ -81,6 +89,7 @@ export const REQUEST_STATE = {
             id: 1,
             quantity: 23,
             deliveryDate: {} as Date,
+            activeStatus: 'validé',
             statusList: [],
             user: {} as User,
             supply: {} as Supply
@@ -89,6 +98,7 @@ export const REQUEST_STATE = {
             id: 1,
             quantity: 23,
             deliveryDate: {} as Date,
+            activeStatus: 'validé',
             statusList: [],
             user: {} as User,
             supply: {} as Supply

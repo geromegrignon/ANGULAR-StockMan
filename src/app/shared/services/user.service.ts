@@ -13,6 +13,10 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  getAllusers(): Observable<User[]> {
+    return this.http.get<User[]>(`${HOST}/${ENDPOINT}`);
+  }
+
   getUserById(id: number): Observable<User> {
     return this.http.get<User>(`${HOST}/${ENDPOINT}/` + id);
   }

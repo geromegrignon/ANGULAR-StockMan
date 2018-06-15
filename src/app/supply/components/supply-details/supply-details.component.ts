@@ -87,10 +87,10 @@ export class SupplyDetailsComponent implements OnInit, OnChanges {
   }
 
   save(): void {
+    console.log(this.supplyForm.value);
     this.store.dispatch(new TryUpdateSupply(
       {
-      ...this.supplyForm.value,
-      requestList: null
+      ...this.supplyForm.value
       }
     ));
     this.readonly = true;

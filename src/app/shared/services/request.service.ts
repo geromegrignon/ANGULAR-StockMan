@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Request } from '../model/request.model';
+import { User } from '../model/user.model';
 
 const HOST = 'http://localhost:8080/api';
 const ENDPOINT = 'request';
@@ -26,6 +27,10 @@ export class RequestService {
   }
 
   updateRequest(request: Request): Observable<Request> {
+    return this.http.put<Request>(`${HOST}/${ENDPOINT}/${request.id}`, request);
+  }
+
+  updateStatus(request: Request): Observable<Request> {
     return this.http.put<Request>(`${HOST}/${ENDPOINT}/${request.id}`, request);
   }
 }
