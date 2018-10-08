@@ -1,5 +1,4 @@
 import { Audit } from './audit.model';
-import { Contact } from './contact.model';
 import { Request } from './request.model';
 import { Role } from './role.model';
 

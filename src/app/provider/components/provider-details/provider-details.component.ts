@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Provider } from '../../../shared/model/provider.model';
 import { ProviderService } from '../../../shared/services/provider.service';
 import { Store, select } from '@ngrx/store';
 import { State } from '../../../shared/store';
-import { TryUpdateProvider, TryFetchProviderById } from '../../../shared/store/actions/provider.actions';
+import { TryFetchProviderById } from '../../../shared/store/actions/provider.actions';
 import { providerByIdSelector } from '../../../shared/store/selectors/provider.selectors';
 import { Observable } from 'rxjs';
 import { ProviderFormComponent } from '../provider-form/provider-form.component';

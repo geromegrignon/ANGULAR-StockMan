@@ -6,11 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  public links: {name: string, path: string, icon: string}[] = [
+  public readonly links: {name: string, path: string, icon: string}[] = [
     {name: 'Tableau de bord', path: 'dashboard', icon: 'dashboard'},
     {name: 'Articles', path: 'supply', icon: 'description'},
-    {name: 'Fournisseurs', path: 'provider', icon: 'assignment_ind'},
-    // {name: 'Utilisateurs', path: 'user', icon: 'people'}
+    {name: 'Fournisseurs', path: 'provider', icon: 'assignment_ind'}
   ];
 
   constructor() { }

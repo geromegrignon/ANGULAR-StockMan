@@ -1,6 +1,4 @@
 import { Supply } from './supply.model';
-import { Provider } from './provider.model';
-import { Audit } from './audit.model';
 import { Status } from './status.model';
 import { User } from './user.model';
 

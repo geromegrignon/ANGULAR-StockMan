@@ -10,7 +10,7 @@ import { Provider } from '../../../../shared/model/provider.model';
   styleUrls: ['./provider-supply-list.component.css']
 })
 export class ProviderSupplyListComponent implements OnInit {
-  public supplyColumns = ['name', 'description', 'stock'];
+  public readonly supplyColumns = ['name', 'description', 'stock'];
   public supplySource;
   public alertMessage: string;
 
@@ -31,7 +31,7 @@ export class ProviderSupplyListComponent implements OnInit {
     }
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(filterValue: string): void {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.supplySource.filter = filterValue;

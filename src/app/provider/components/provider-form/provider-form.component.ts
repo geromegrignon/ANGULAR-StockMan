@@ -18,7 +18,7 @@ export class ProviderFormComponent implements OnInit, OnChanges {
   public providerForm: FormGroup;
   public provider$: Observable<Provider>;
   public readonly$: Observable<boolean> = this.store.pipe(select(readonlySelector));
-  public emptyProvider: Provider = {
+  public readonly emptyProvider: Provider = {
     name: '',
     siret: null,
     addressInfo: {
@@ -70,7 +70,6 @@ export class ProviderFormComponent implements OnInit, OnChanges {
   }
 
   cancel(): void {
-    // this.supply$ = this.store.pipe(select(selectedSupply));
     this.store.dispatch(new SetReadonlyMode());
   }
 
@@ -97,7 +96,7 @@ export class ProviderFormComponent implements OnInit, OnChanges {
     }));
   }
 
-  setMode() {
+  setMode(): void {
     if (this.route.snapshot.paramMap.get('id')) {
       this.store.dispatch(new SetReadonlyMode());
     } else {

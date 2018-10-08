@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dashboard-supply.component.css']
 })
 export class DashboardSupplyComponent implements OnInit, OnChanges {
-  public alertColumns = ['name', 'stock', 'alert'];
+  public readonly alertColumns = ['name', 'stock', 'alert'];
   public alertSource: MatTableDataSource<Supply>;
   public alertMessage: string;
 
@@ -28,7 +28,7 @@ export class DashboardSupplyComponent implements OnInit, OnChanges {
     this.alertSource = new MatTableDataSource(this.onAlertSupplyList);
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(filterValue: string): void {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.alertSource.filter = filterValue;

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Request } from '../model/request.model';
-import { User } from '../model/user.model';
 
 const HOST = 'http://localhost:8080/api';
 const ENDPOINT = 'request';

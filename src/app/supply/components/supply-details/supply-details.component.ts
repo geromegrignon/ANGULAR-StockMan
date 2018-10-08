@@ -5,16 +5,12 @@ import { State } from '../../../shared/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Provider } from '../../../shared/model/provider.model';
-import { errorProviderSelector, providerListSelector } from '../../../shared/store/selectors/provider.selectors';
-import { ProviderService } from '../../../shared/services/provider.service';
 import { selectedSupply, errorSupplySelector } from '../../../shared/store/selectors/supply.selectors';
 import { TryFetchSelectedSupply, TryUpdateSupply } from '../../../shared/store/actions/supply.actions';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { SupplyService } from '../../../shared/services/supply.service';
 import { TryCreateRequest } from '../../../shared/store/actions/request.actions';
-import { OrderRequestsComponent } from './order-requests/order-requests.component';
 import { UserService } from '../../../shared/services/user.service';
 import { User } from '../../../shared/model/user.model';
 
@@ -138,7 +134,7 @@ export class SupplyDetailsComponent implements OnInit, OnChanges {
     this.rebuildRequestForm();
   }
 
-  rebuildRequestForm() {
+  rebuildRequestForm(): void {
     this.requestForm.reset({
       quantity: '',
       deliveryDate: ''

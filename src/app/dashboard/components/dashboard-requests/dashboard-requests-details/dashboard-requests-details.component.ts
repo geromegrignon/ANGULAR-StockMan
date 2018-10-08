@@ -1,14 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { State } from '../../../../shared/store';
-import { TryFetchRequestById, TryUpdateRequest } from '../../../../shared/store/actions/request.actions';
-import { singleRequestSelector } from '../../../../shared/store/selectors/request.selectors';
-import { Observable } from 'rxjs';
+import { TryUpdateRequest } from '../../../../shared/store/actions/request.actions';
 import { Request } from '../../../../shared/model/request.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { RequestService } from '../../../../shared/services/request.service';
 
 @Component({
   selector: 'app-dashboard-requests-details',
@@ -23,7 +19,6 @@ export class DashboardRequestsDetailsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Request,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<DashboardRequestsDetailsComponent>,
-    private requestService: RequestService,
     private store: Store<State>
   ) { }
 

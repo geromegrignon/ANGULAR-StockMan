@@ -15,7 +15,7 @@ export class ProviderNewComponent implements OnInit {
   ngOnInit() {
   }
 
-  create() {
+  create(): void {
     this.providerForm.create();
   }
 

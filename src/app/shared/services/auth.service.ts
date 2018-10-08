@@ -3,7 +3,7 @@ import { Observable, BehaviorSubject, timer, of, Subscription } from 'rxjs';
 import { User } from '../model/user.model';
 import { HttpClient } from '@angular/common/http';
 import { JwtToken } from '../model/jwtToken.model';
-import { tap, switchMap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { State } from '../store';

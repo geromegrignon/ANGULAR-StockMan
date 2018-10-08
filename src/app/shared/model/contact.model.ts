@@ -1,5 +1,4 @@
 import { Provider } from './provider.model';
-import { Audit } from './audit.model';
 
 export interface Contact {
     id?: number;

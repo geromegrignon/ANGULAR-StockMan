@@ -11,8 +11,8 @@ import { Provider } from '../../../shared/model/provider.model';
   styleUrls: ['./provider-list.component.css']
 })
 export class ProviderListComponent implements OnInit, OnChanges {
-  public providerColumns = ['name', 'siret'];
-  public providerSource;
+  public readonly providerColumns = ['name', 'siret'];
+  public providerSource: any;
   public alertMessage: string;
 
   @Input() providerList: Provider[];
@@ -29,7 +29,7 @@ export class ProviderListComponent implements OnInit, OnChanges {
     this.providerSource = new MatTableDataSource(this.providerList);
   }
 
-  applyFilter(filterValue: string) {
+  applyFilter(filterValue: string): void {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.providerSource.filter = filterValue;

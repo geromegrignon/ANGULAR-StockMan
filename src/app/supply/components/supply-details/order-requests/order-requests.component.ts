@@ -9,7 +9,7 @@ import { MatTableDataSource, MatSort } from '@angular/material';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderRequestsComponent implements OnInit {
-  public orderRequestColumns = ['deliveryDate', 'quantity']; // add status
+  public readonly orderRequestColumns = ['deliveryDate', 'quantity']; // add status
   public orderRequestSource;
 
   @ViewChild(MatSort) sort: MatSort;

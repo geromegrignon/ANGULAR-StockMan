@@ -13,7 +13,7 @@ import { DashboardRequestsDetailsComponent } from './dashboard-requests-details/
   styleUrls: ['./dashboard-requests.component.css']
 })
 export class DashboardRequestsComponent implements OnInit, OnChanges {
-  public requestColumns = ['supplyName', 'quantity', 'deliveryDate', 'userName', 'activeStatus'];
+  public readonly requestColumns = ['supplyName', 'quantity', 'deliveryDate', 'userName', 'activeStatus'];
   public requestSource: MatTableDataSource<Request>;
 
   @Input() requestList: Request[];
