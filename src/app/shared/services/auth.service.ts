@@ -27,7 +27,7 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     private store: Store<State>
-  ) { }
+  ) { 
 
    public initTimer() {
      return timer(2000, 5000).pipe(
