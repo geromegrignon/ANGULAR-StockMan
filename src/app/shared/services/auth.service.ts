@@ -30,7 +30,7 @@ export class AuthService {
   ) { }
 
    public initTimer() {
-     return timer(2000, 5000).pipe(
+     retun timer(2000, 5000).pipe(
        tap(() => {
                 this.store.dispatch(new TryRefreshToken());
        })
